@@ -39,7 +39,6 @@ public class HomePage extends AbstractPage {
 
     @FindBy(xpath = "//div[contains(@class, 'brandmenu-v2')]//a")
     private List<ExtendedWebElement> brandLinks;
-
     @FindBy(className = "news-column-index")
     private ExtendedWebElement newsColumn;
 
