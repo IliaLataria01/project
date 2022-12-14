@@ -17,17 +17,18 @@ public class ProductComponent extends AbstractUIObject {
     @FindBy(xpath = "//*[@id='tbodyid']//a[@class='hrefch']")
     private List<ExtendedWebElement> productElement;
 
-    public ProductComponent(WebDriver driver) {
-        super(driver);
+    public ProductComponent(WebDriver driver,SearchContext searchContext) {
+        super(driver,searchContext);
     }
 
 
     public ProductPage clickProduct(String product) {
         for (ExtendedWebElement element : productElement) {
             if (element.getText().equals(product)) {
-                LOGGER.info(product);
+                element.click();
+                return new ProductPage(driver);
             }
         }
-        return new ProductPage(driver);
+        throw new IllegalArgumentException("No such product exists.");
     }
 }

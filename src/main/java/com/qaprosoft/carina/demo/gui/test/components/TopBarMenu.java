@@ -14,20 +14,20 @@ import org.openqa.selenium.support.FindBy;
 
 public class TopBarMenu  extends AbstractUIObject {
     private static final Logger LOGGER = LogManager.getLogger(TopBarMenu.class);
-    @FindBy(xpath = "//*[@id=\"login2\"]")
+    @FindBy(linkText = "Contact")
     private ExtendedWebElement contactLink;
 
-    @FindBy(xpath = "//*[@id=\"cartur\"]")
+    @FindBy(linkText = "Cart")
     private ExtendedWebElement cartLink;
 
-    @FindBy(xpath = "//*[@id=\"login2\"]")
+    @FindBy(linkText = "Log in")
     private ExtendedWebElement logInLink;
 
-    @FindBy(xpath = "//*[@id=\"signin2\"]")
+    @FindBy(linkText = "Sign up")
     private ExtendedWebElement signUpLink;
 
 
-    @FindBy(xpath = "//*[@id=\"logout2\"]")
+    @FindBy(linkText = "Log out")
     private ExtendedWebElement logOutLink;
 
     public TopBarMenu(WebDriver driver, SearchContext searchContext) {
