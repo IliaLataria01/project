@@ -24,6 +24,9 @@ public class HomePage extends AbstractPage {
     @FindBy(id = "tbodyid")
     private ProductComponent productComponent;
 
+    @FindBy(id = "next2")
+    private ExtendedWebElement nextPage;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -37,6 +40,8 @@ public class HomePage extends AbstractPage {
         return productComponent;
     }
 
-
-
+    public HomePage clickNextPageButton() {
+        nextPage.click();
+        return new HomePage(driver);
+    }
 }

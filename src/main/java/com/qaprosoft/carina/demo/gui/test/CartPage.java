@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.gui.test;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.gui.test.components.TopBarMenu;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -13,23 +14,25 @@ import java.util.List;
 public class CartPage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger(CartPage.class);
 
+    @FindBy(id = "navbarExample")
+    private TopBarMenu topBarMenu;
 
-    @FindBy(xpath = "//*[@class=\"success\"]")
-    private List<ExtendedWebElement> listed_products;
+    @FindBy(xpath = "//*[@class=\"success\"]//a")
+    private ExtendedWebElement product;
 
-    @FindBy(xpath = "//*[@id=\"tbodyid\"]/tr")
-    private ExtendedWebElement checkCartEmpty;
 
     public CartPage(WebDriver driver) {
         super(driver);
     }
 
-    public boolean isCartEmpty() {
-        return !checkCartEmpty.isElementPresent();
+    public TopBarMenu getTopBarMenu() {
+        return topBarMenu;
     }
 
-    public void removeProductFromCart(String product) {
+
+    public void removeProductFromCart() {
         // Since I only add one product,going to get first out of list
-        listed_products.get(0).findExtendedWebElement(By.tagName("a")).click();
+        assertElementPresent(product);
+        product.click();
     }
 }

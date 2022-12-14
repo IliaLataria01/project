@@ -26,20 +26,33 @@ public class HomePageTest implements IAbstractTest {
     }
 
     // P1
-//    @Test
-//    public void additionOfProductInTheCartTest() {
-//        HomePage homePage = new HomePage(getDriver());
-//        homePage.open();
-//        ProductPage productPage = homePage.getProductComponent().clickProduct("Nexus 6");
-//        Assert.assertTrue(productPage.isPageOpened(),"Is not opened.");
-//    }
-//
-//    // P2
-//    @Test
-//    public void RemovalFromCartTest() {
-//
-//    }
-//
+    @Test
+    public void additionOfProductInTheCartTest() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
+        productPage.addToCartProduct();
+        CartPage cartPage = homePage.getTopBarMenu().openCartPage();
+        ContactPage page = cartPage.getTopBarMenu().openContactPage();
+        Assert.assertTrue(page.isSendMessageButtonPresent(),"Message button is not opened.");
+    }
+
+    // P2
+    @Test
+    public void removalFromCartTest() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
+        productPage.addToCartProduct();
+        CartPage cartPage = homePage.getTopBarMenu().openCartPage();
+
+        cartPage.removeProductFromCart();
+
+        Assert.assertTrue(cartPage.isPageOpened(),"Cart Page is not opened.");
+
+
+    }
+
     //P3  Tested and Works
     @Test
     public void contactTest() {

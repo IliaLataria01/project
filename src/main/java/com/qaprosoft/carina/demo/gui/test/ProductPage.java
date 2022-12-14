@@ -13,13 +13,6 @@ public class ProductPage extends AbstractPage {
     @FindBy(xpath = "//*[@id=\"tbodyid\"]/div[2]/div/a")
     private ExtendedWebElement addToCartButton;
 
-    @FindBy(xpath = "//*[@id=\"navbarExample\"]/ul/li[4]/a")
-    private ExtendedWebElement cartButton;
-
-    @FindBy(xpath = "//*[@id=\"imgp\"]/div")
-    private ExtendedWebElement imgContainer;
-
-
     public ProductPage(WebDriver driver) {
         super(driver);
     }
@@ -28,21 +21,8 @@ public class ProductPage extends AbstractPage {
         return addToCartButton.isElementPresent();
     }
 
-    public boolean isCartButtonPresent() {
-        return cartButton.isElementPresent();
-    }
 
-    public boolean isImgContainerPresent() {
-        return imgContainer.isElementPresent();
-    }
-
-    public void clickAddToCartButton() {
+    public void addToCartProduct() {
         addToCartButton.click();
     }
-
-    public CartPage clickCartButton() {
-        cartButton.click();
-        return new CartPage(driver);
-    }
-
 }

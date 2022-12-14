@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.gui.test.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.DisableCacheLookup;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
 import com.qaprosoft.carina.demo.gui.test.ProductPage;
 import org.apache.logging.log4j.LogManager;
@@ -17,6 +18,7 @@ public class ProductComponent extends AbstractUIObject {
     @FindBy(xpath = "//*[@id='tbodyid']//a[@class='hrefch']")
     private List<ExtendedWebElement> productElement;
 
+
     public ProductComponent(WebDriver driver,SearchContext searchContext) {
         super(driver,searchContext);
     }
@@ -24,11 +26,14 @@ public class ProductComponent extends AbstractUIObject {
 
     public ProductPage clickProduct(String product) {
         for (ExtendedWebElement element : productElement) {
-            if (element.getText().equals(product)) {
+            String text = element.getText();
+            if (product.equalsIgnoreCase(text)) {
                 element.click();
                 return new ProductPage(driver);
             }
         }
-        throw new IllegalArgumentException("No such product exists.");
+        throw new IllegalArgumentException("Product is not available");
     }
+
+
 }
