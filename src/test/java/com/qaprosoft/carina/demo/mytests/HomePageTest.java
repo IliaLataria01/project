@@ -28,31 +28,16 @@ public class HomePageTest implements IAbstractTest {
     // P1
     @Test
     public void additionOfProductInTheCartTest() {
-//        HomePage homePage = new HomePage(getDriver());
-//        homePage.open();
-//        ProductPage productPage = homePage.clickProduct("Samsung galaxy s7");
-//        productPage.clickAddToCartButton();
-//        Assert.assertTrue(productPage.isAddToCartButtonPresent(),"Add to cart button is not present.");
-//        CartPage cartPage = productPage.clickCartButton();
-//        Assert.assertTrue(productPage.isCartButtonPresent(),"Cart Button is not present.");
-//        Assert.assertFalse(cartPage.isCartEmpty(),"Cart is Empty.");
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        ProductPage productPage = homePage.getProductComponent().clickProduct("Nexus 6");
+        Assert.assertTrue(productPage.isPageOpened(),"Is not opened.");
     }
 
     // P2
     @Test
     public void RemovalFromCartTest() {
-//        HomePage homePage = new HomePage(getDriver());
-//        homePage.open();
-//        ProductPage productPage = homePage.clickProduct("Sony xperia z5");
-//        productPage.clickAddToCartButton();
-//        Assert.assertTrue(productPage.isAddToCartButtonPresent(),"Add to cart button is not present.");
-//        CartPage cartPage = productPage.clickCartButton();
-//        Assert.assertTrue(productPage.isCartButtonPresent(),"Cart Button is not present.");
-//        Assert.assertFalse(cartPage.isCartEmpty(),"Cart is Empty.");
-//
-//        // Now Only thing that is left is to add remove function that takes same product name
-//        cartPage.removeProductFromCart("Sony xperia z5");
-//        cartPage.removeProductFromCart("asdasd");
+
     }
 
     //P3 Works
@@ -79,8 +64,9 @@ public class HomePageTest implements IAbstractTest {
         // First We Have to sign Up
         SignUpPage signUpPage = homePage.getTopBarMenu().openSignUpPage();
         List<String> userInfo = signUpPage.inputSignUp();
-        signUpPage.clickSignUpButton();
+        homePage = signUpPage.clickSignUpButton();
 
+        Assert.assertTrue(homePage.isPageOpened(),"Home page is not opened");
 
         LoginPage loginPage = homePage.getTopBarMenu().openLoginPage();
         Assert.assertTrue(loginPage.isLoginFormPresent(),"Login Form is not present.");

@@ -1,13 +1,18 @@
-package com.qaprosoft.carina.demo.gui.test;
+package com.qaprosoft.carina.demo.gui.test.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import org.openqa.selenium.SearchContext;
+import com.qaprosoft.carina.demo.gui.test.CartPage;
+import com.qaprosoft.carina.demo.gui.test.ContactPage;
+import com.qaprosoft.carina.demo.gui.test.LoginPage;
+import com.qaprosoft.carina.demo.gui.test.SignUpPage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class TopBarMenu  extends AbstractUIObject {
+public class MenuComponent  extends AbstractUIObject {
+    private static final Logger LOGGER = LogManager.getLogger(MenuComponent.class);
     @FindBy(linkText = "Contact")
     private ExtendedWebElement contactLink;
 
@@ -24,8 +29,8 @@ public class TopBarMenu  extends AbstractUIObject {
     @FindBy(linkText = "Log out")
     private ExtendedWebElement logOutLink;
 
-    public TopBarMenu(WebDriver driver, SearchContext searchContext) {
-        super(driver, searchContext);
+    public MenuComponent(WebDriver driver) {
+        super(driver);
     }
 
     public boolean isLogOutButtonPresent() {

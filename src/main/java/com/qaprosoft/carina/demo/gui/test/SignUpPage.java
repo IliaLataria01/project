@@ -44,15 +44,14 @@ public class SignUpPage extends AbstractPage {
     public List<String> inputSignUp() {
         String userName = userFactory.randomUserName();
         String password = userFactory.randomPassword();
-        LOGGER.info(userName);
-        LOGGER.info(password);
         signUserInput.type(userName);
         signPasswordInput.type(password);
         return Arrays.asList(userName,password);
     }
 
-    public void clickSignUpButton() {
+    public HomePage clickSignUpButton() {
         signUpButton.click();
+        return new HomePage(driver);
 
     }
 }
