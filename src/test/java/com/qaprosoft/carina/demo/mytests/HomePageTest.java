@@ -2,11 +2,8 @@ package com.qaprosoft.carina.demo.mytests;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.demo.gui.test.*;
-import org.openqa.selenium.Alert;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.List;
 
 public class HomePageTest implements IAbstractTest {
 
@@ -15,14 +12,14 @@ public class HomePageTest implements IAbstractTest {
     public void LoginTest() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        LoginPage loginPage = homePage.getMenuComponent().openLoginPage();
+        LoginPage loginPage = homePage.getTopBarMenu().openLoginPage();
         Assert.assertTrue(loginPage.isLoginFormPresent(),"Login Form was not present.");
         Assert.assertTrue(loginPage.isLoginUserNameFieldPresent(),"UserName Field was not present.");
         Assert.assertTrue(loginPage.isLoginPasswordFieldPresent(),"Password Field was not present.");
         Assert.assertTrue(loginPage.isLoginButtonPresent(),"Log in button was not present.");
         loginPage.inputLogin("Ilia123","Ilia2002");
         loginPage.clickLoginButton();
-        Assert.assertTrue(homePage.getMenuComponent().isLogOutButtonPresent(),"Log out button was not present.");
+        Assert.assertTrue(homePage.getTopBarMenu().isLogOutButtonPresent(),"Log out button was not present.");
     }
 
 //    // P1

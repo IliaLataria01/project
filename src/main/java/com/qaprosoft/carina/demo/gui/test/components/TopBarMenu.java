@@ -12,25 +12,25 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class MenuComponent  extends AbstractUIObject {
-    private static final Logger LOGGER = LogManager.getLogger(MenuComponent.class);
-    @FindBy(linkText = "Contact")
+public class TopBarMenu  extends AbstractUIObject {
+    private static final Logger LOGGER = LogManager.getLogger(TopBarMenu.class);
+    @FindBy(xpath = "//*[@id=\"login2\"]")
     private ExtendedWebElement contactLink;
 
-    @FindBy(linkText = "Cart")
+    @FindBy(xpath = "//*[@id=\"cartur\"]")
     private ExtendedWebElement cartLink;
 
-    @FindBy(linkText = "Log in")
+    @FindBy(xpath = "//*[@id=\"login2\"]")
     private ExtendedWebElement logInLink;
 
-    @FindBy(linkText = "Sign up")
+    @FindBy(xpath = "//*[@id=\"signin2\"]")
     private ExtendedWebElement signUpLink;
 
 
-    @FindBy(linkText = "Log out")
+    @FindBy(xpath = "//*[@id=\"logout2\"]")
     private ExtendedWebElement logOutLink;
 
-    public MenuComponent(WebDriver driver, SearchContext searchContext) {
+    public TopBarMenu(WebDriver driver, SearchContext searchContext) {
         super(driver,searchContext);
     }
 
