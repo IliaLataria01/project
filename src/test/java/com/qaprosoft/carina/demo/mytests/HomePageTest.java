@@ -22,18 +22,32 @@ public class HomePageTest implements IAbstractTest {
         loginPage.clickLoginButton();
     }
 
-    // Not Finished
+    // P1
     @Test
     public void additionOfProductInTheCart() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-
+        ProductPage productPage = homePage.clickProduct("Sony xperia z5");
+        productPage.clickAddToCartButton();
+        Assert.assertTrue(productPage.isAddToCartButtonPresent(),"Add to cart button is not present.");
+        CartPage cartPage = productPage.clickCartButton();
+        Assert.assertTrue(productPage.isCartButtonPresent(),"Cart Button is not present.");
+        Assert.assertFalse(cartPage.isCartEmpty(),"Cart is Empty.");
     }
 
+    // P2 Not Complete
     @Test
     public void checkRemovalFromCart() {
-        CartPage cartPage = new CartPage(getDriver());
-        cartPage.open();
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        ProductPage productPage = homePage.clickProduct("Samsung galaxy s7");
+        productPage.clickAddToCartButton();
+        Assert.assertTrue(productPage.isAddToCartButtonPresent(),"Add to cart button is not present.");
+        CartPage cartPage = productPage.clickCartButton();
+        Assert.assertTrue(productPage.isCartButtonPresent(),"Cart Button is not present.");
+        Assert.assertFalse(cartPage.isCartEmpty(),"Cart is Empty.");
+
+        // Now Only thing that is left is to add remove function that takes same product name
     }
 
     //P3
