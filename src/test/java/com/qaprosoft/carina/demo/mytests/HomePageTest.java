@@ -65,7 +65,7 @@ public class HomePageTest implements IAbstractTest {
         contactPage.newMessage(R.TESTDATA.get("email"),R.TESTDATA.get("contact_name"),R.TESTDATA.get("message"));
         Assert.assertTrue(contactPage.isSendMessageButtonPresent(),"Send Message Button is not present");
         contactPage.clickSendMessageButton();
-        Assert.assertTrue(homePage.isSliderVisible(),"Slider is not visible");
+        Assert.assertTrue(homePage.isNextPageButtonPresent(),"NextPage button is not present.");
     }
 //
     // P4 tested and works

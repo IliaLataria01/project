@@ -39,6 +39,10 @@ public class HomePage extends AbstractPage {
         return slider.isVisible();
     }
 
+    public boolean isNextPageButtonPresent() {
+        return nextPage.isElementPresent();
+    }
+
 
     public TopBarMenu getTopBarMenu() {
         return topBarMenu;
