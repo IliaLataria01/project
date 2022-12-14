@@ -27,7 +27,7 @@ public class HomePageTest implements IAbstractTest {
     public void additionOfProductInTheCart() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        ProductPage productPage = homePage.clickProduct("Sony xperia z5");
+        ProductPage productPage = homePage.clickProduct("Samsung galaxy s7");
         productPage.clickAddToCartButton();
         Assert.assertTrue(productPage.isAddToCartButtonPresent(),"Add to cart button is not present.");
         CartPage cartPage = productPage.clickCartButton();
@@ -40,7 +40,7 @@ public class HomePageTest implements IAbstractTest {
     public void checkRemovalFromCart() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        ProductPage productPage = homePage.clickProduct("Samsung galaxy s7");
+        ProductPage productPage = homePage.clickProduct("Sony xperia z5");
         productPage.clickAddToCartButton();
         Assert.assertTrue(productPage.isAddToCartButtonPresent(),"Add to cart button is not present.");
         CartPage cartPage = productPage.clickCartButton();
@@ -48,6 +48,8 @@ public class HomePageTest implements IAbstractTest {
         Assert.assertFalse(cartPage.isCartEmpty(),"Cart is Empty.");
 
         // Now Only thing that is left is to add remove function that takes same product name
+        cartPage.removeProductFromCart("Sony xperia z5");
+        cartPage.removeProductFromCart("asdasd");
     }
 
     //P3

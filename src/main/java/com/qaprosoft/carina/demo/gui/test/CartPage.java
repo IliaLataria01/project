@@ -28,7 +28,8 @@ public class CartPage extends AbstractPage {
         return !checkCartEmpty.isElementPresent();
     }
 
-
-
-
+    public void removeProductFromCart(String product) {
+        // Since I only add one product,going to get first out of list
+        listed_products.get(0).findExtendedWebElement(By.tagName("a")).click();
+    }
 }
