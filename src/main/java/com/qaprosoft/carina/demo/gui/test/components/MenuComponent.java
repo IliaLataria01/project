@@ -8,6 +8,7 @@ import com.qaprosoft.carina.demo.gui.test.LoginPage;
 import com.qaprosoft.carina.demo.gui.test.SignUpPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,8 +30,8 @@ public class MenuComponent  extends AbstractUIObject {
     @FindBy(linkText = "Log out")
     private ExtendedWebElement logOutLink;
 
-    public MenuComponent(WebDriver driver) {
-        super(driver);
+    public MenuComponent(WebDriver driver, SearchContext searchContext) {
+        super(driver,searchContext);
     }
 
     public boolean isLogOutButtonPresent() {

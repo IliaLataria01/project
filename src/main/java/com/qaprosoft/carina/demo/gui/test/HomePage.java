@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.test.components.MenuComponent;
 import com.qaprosoft.carina.demo.gui.test.components.ProductComponent;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -16,7 +17,7 @@ public class HomePage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger(HomePage.class);
 
     @FindBy(id = "navbarExample")
-    private MenuComponent topBarMenu;
+    private MenuComponent menuComponent;
 
     @FindBy(xpath = "//*[@class=\"col-lg-4 col-md-6 mb-4\"]")
     private List<ExtendedWebElement> productList;
@@ -29,8 +30,8 @@ public class HomePage extends AbstractPage {
     }
 
 
-    public MenuComponent getTopBarMenu() {
-        return topBarMenu;
+    public MenuComponent getMenuComponent() {
+        return menuComponent;
     }
 
     public ProductComponent getProductComponent() {
