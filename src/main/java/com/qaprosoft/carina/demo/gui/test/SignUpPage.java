@@ -4,11 +4,18 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.*;
+
 public class SignUpPage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger(SignUpPage.class);
+
+    @FindBy(xpath = "//*[@id=\"signInModal\"]/div/div")
+    private ExtendedWebElement signUpForm;
+
     @FindBy(id = "sign-username")
     private ExtendedWebElement signUserInput;
 
@@ -19,9 +26,14 @@ public class SignUpPage extends AbstractPage {
     private ExtendedWebElement signUpButton;
 
 
+    private UserFactory userFactory;
+
     public SignUpPage(WebDriver driver) {
         super(driver);
+        this.userFactory = new UserFactory();
     }
+
+    public boolean isSignUpFormPresent() {return signUpForm.isElementPresent();}
 
     public boolean isSignUpUserNameFieldPresent() {return signUserInput.isElementPresent();}
 
@@ -29,15 +41,18 @@ public class SignUpPage extends AbstractPage {
 
     public boolean isSignUpButtonPresent() {return signUpButton.isElementPresent();}
 
-    public void inputSignUp(String userName,String password) {
+    public List<String> inputSignUp() {
+        String userName = userFactory.randomUserName();
+        String password = userFactory.randomPassword();
+        LOGGER.info(userName);
+        LOGGER.info(password);
         signUserInput.type(userName);
         signPasswordInput.type(password);
+        return Arrays.asList(userName,password);
     }
 
-    public void clickFormSignUpButton() {
+    public void clickSignUpButton() {
         signUpButton.click();
+
     }
-
-
-
 }
