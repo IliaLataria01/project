@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.gui.test;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.test.components.TopBarMenu;
 import org.apache.logging.log4j.LogManager;
@@ -13,6 +14,7 @@ public class ContactPage extends AbstractPage {
 
     @FindBy(id = "navbarExample")
     private TopBarMenu topBarMenu;
+
 
     @FindBy(id = "recipient-email")
     private ExtendedWebElement emailField;

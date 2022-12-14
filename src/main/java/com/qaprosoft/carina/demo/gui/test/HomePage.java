@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.gui.test;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.test.components.ProductComponent;
 
@@ -27,8 +28,15 @@ public class HomePage extends AbstractPage {
     @FindBy(id = "next2")
     private ExtendedWebElement nextPage;
 
+    @FindBy(xpath = "//*[@id=\"carouselExampleIndicators\"]/div/div[3]/img")
+    private ExtendedWebElement slider;
+
     public HomePage(WebDriver driver) {
         super(driver);
+    }
+
+    public boolean isSliderVisible() {
+        return slider.isVisible();
     }
 
 

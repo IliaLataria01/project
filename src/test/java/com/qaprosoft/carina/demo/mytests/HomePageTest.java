@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mytests;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.gui.test.*;
+import groovy.util.logging.Log;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -45,9 +46,7 @@ public class HomePageTest implements IAbstractTest {
         ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
         productPage.addToCartProduct();
         CartPage cartPage = homePage.getTopBarMenu().openCartPage();
-
         cartPage.removeProductFromCart();
-
         Assert.assertTrue(cartPage.isPageOpened(),"Cart Page is not opened.");
 
 
@@ -66,7 +65,7 @@ public class HomePageTest implements IAbstractTest {
         contactPage.newMessage(R.TESTDATA.get("email"),R.TESTDATA.get("contact_name"),R.TESTDATA.get("message"));
         Assert.assertTrue(contactPage.isSendMessageButtonPresent(),"Send Message Button is not present");
         contactPage.clickSendMessageButton();
-        Assert.assertTrue(contactPage.isPageOpened(),"Contact Page is closed.");
+        Assert.assertTrue(homePage.isSliderVisible(),"Slider is not visible");
     }
 //
     // P4 tested and works
