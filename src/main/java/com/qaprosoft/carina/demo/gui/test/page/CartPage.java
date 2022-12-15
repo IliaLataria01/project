@@ -17,7 +17,7 @@ public class CartPage extends AbstractPage {
     @FindBy(id = "navbarExample")
     private MenuComponent topBarMenu;
 
-    @FindBy(xpath = "//*[@class='success']//td[contains(text(),'%s')]/parent::tr//a[contains(text(),'Delete')]")
+    @FindBy(xpath = "//td[contains(text(),'%s')]/parent::tr//a[contains(text(),'Delete')]")
     private ExtendedWebElement product;
 
 
@@ -29,7 +29,7 @@ public class CartPage extends AbstractPage {
         return topBarMenu;
     }
 
-    public boolean isProductPresent() {
+    public boolean isProductPresent(String productName) {
         return product.isElementPresent();
     }
 

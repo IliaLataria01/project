@@ -46,7 +46,7 @@ public class ContactPage extends AbstractPage {
         return sendMessageButton.isElementPresent();
     }
 
-    public void newMessage(String email,String contactName,String message) {
+    public void newMessage(String email, String contactName, String message) {
         emailField.type(email);
         contactNameField.type(contactName);
         messageArea.type(message);

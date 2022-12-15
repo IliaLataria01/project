@@ -33,7 +33,9 @@ public class HomePage extends AbstractPage {
         return nextPage.isElementPresent();
     }
 
-    public MenuComponent getMenuComponent() {return menuComponent;}
+    public MenuComponent getMenuComponent() {
+        return menuComponent;
+    }
 
     public ProductComponent getProductComponent() {
         return productComponent;

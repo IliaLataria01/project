@@ -42,7 +42,7 @@ public class LoginPage extends AbstractPage {
         return loginButton.isElementPresent();
     }
 
-    public void inputLogin(String userName,String password) {
+    public void inputLogin(String userName, String password) {
         loginUserNameInput.type(userName);
         loginPasswordInput.type(password);
     }

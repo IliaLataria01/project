@@ -18,8 +18,8 @@ public class ProductComponent extends AbstractUIObject {
     private List<ExtendedWebElement> productElement;
 
 
-    public ProductComponent(WebDriver driver,SearchContext searchContext) {
-        super(driver,searchContext);
+    public ProductComponent(WebDriver driver, SearchContext searchContext) {
+        super(driver, searchContext);
     }
 
 

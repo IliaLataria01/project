@@ -12,7 +12,7 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class MenuComponent  extends AbstractUIObject {
+public class MenuComponent extends AbstractUIObject {
     private static final Logger LOGGER = LogManager.getLogger(MenuComponent.class);
 
     @FindBy(linkText = "Contact")
@@ -34,20 +34,29 @@ public class MenuComponent  extends AbstractUIObject {
     private ExtendedWebElement welcomeMessage;
 
     public MenuComponent(WebDriver driver, SearchContext searchContext) {
-        super(driver,searchContext);
+        super(driver, searchContext);
     }
 
     public boolean isLogOutButtonPresent() {
         return logOutLink.isElementPresent();
     }
 
-    public boolean isLoginButtonPresent() {return logInLink.isElementPresent();}
+    public boolean isLoginButtonPresent() {
+        return logInLink.isElementPresent();
+    }
 
-    public boolean isSignUpButtonPresent() {return signUpLink.isElementPresent();}
+    public boolean isSignUpButtonPresent() {
+        return signUpLink.isElementPresent();
+    }
 
-    public boolean isCartButtonPresent() {return cartLink.isElementPresent();}
+    public boolean isCartButtonPresent() {
+        return cartLink.isElementPresent();
+    }
 
-    public boolean isContactButtonPresent() {return contactLink.isElementPresent();}
+    public boolean isContactButtonPresent() {
+        return contactLink.isElementPresent();
+    }
+
     public ContactPage openContactPage() {
         contactLink.click();
         return new ContactPage(driver);

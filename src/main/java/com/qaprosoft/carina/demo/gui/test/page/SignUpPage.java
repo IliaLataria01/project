@@ -28,18 +28,26 @@ public class SignUpPage extends AbstractPage {
         super(driver);
     }
 
-    public boolean isSignUpFormPresent() {return signUpForm.isElementPresent();}
+    public boolean isSignUpFormPresent() {
+        return signUpForm.isElementPresent();
+    }
 
-    public boolean isSignUpUserNameFieldPresent() {return signUserInput.isElementPresent();}
+    public boolean isSignUpUserNameFieldPresent() {
+        return signUserInput.isElementPresent();
+    }
 
-    public boolean isSignUpPasswordFieldPresent() {return signPasswordInput.isElementPresent();}
+    public boolean isSignUpPasswordFieldPresent() {
+        return signPasswordInput.isElementPresent();
+    }
 
-    public boolean isSignUpButtonPresent() {return signUpButton.isElementPresent();}
+    public boolean isSignUpButtonPresent() {
+        return signUpButton.isElementPresent();
+    }
 
-    public List<String> inputSignUp(String userName,String password) {
+    public List<String> inputSignUp(String userName, String password) {
         signUserInput.type(userName);
         signPasswordInput.type(password);
-        return Arrays.asList(userName,password);
+        return Arrays.asList(userName, password);
     }
 
     public HomePage clickSignUpButton() {

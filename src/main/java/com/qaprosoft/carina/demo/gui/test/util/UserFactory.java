@@ -14,12 +14,12 @@ public class UserFactory {
 
     public static String getRandomUserName() {
         StringBuilder builder = new StringBuilder();
-        while(builder.toString().length() == 0) {
-            int length = random.nextInt(5)+5;
-            for(int i = 0; i < length; i++) {
+        while (builder.toString().length() == 0) {
+            int length = random.nextInt(5) + 5;
+            for (int i = 0; i < length; i++) {
                 builder.append(lexicon.charAt(random.nextInt(lexicon.length())));
             }
-            if(identifiers.contains(builder.toString())) {
+            if (identifiers.contains(builder.toString())) {
                 builder = new StringBuilder();
             }
         }
@@ -31,8 +31,7 @@ public class UserFactory {
         final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < 10; i++)
-        {
+        for (int i = 0; i < 10; i++) {
             int randomIndex = random.nextInt(chars.length());
             sb.append(chars.charAt(randomIndex));
         }
