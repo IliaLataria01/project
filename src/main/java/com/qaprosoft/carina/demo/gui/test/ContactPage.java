@@ -1,7 +1,6 @@
 package com.qaprosoft.carina.demo.gui.test;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.test.components.MenuComponent;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +14,6 @@ public class ContactPage extends AbstractPage {
     @FindBy(id = "navbarExample")
     private MenuComponent topBarMenu;
 
-
     @FindBy(id = "recipient-email")
     private ExtendedWebElement emailField;
 
@@ -25,7 +23,7 @@ public class ContactPage extends AbstractPage {
     @FindBy(id = "message-text")
     private ExtendedWebElement messageArea;
 
-    @FindBy(xpath = "//*[@id=\"exampleModal\"]/div/div/div[3]/button[2]")
+    @FindBy(xpath = "//button[contains(text(),'Send message')]")
     private ExtendedWebElement sendMessageButton;
 
     public ContactPage(WebDriver driver) {

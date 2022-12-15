@@ -3,11 +3,9 @@ package com.qaprosoft.carina.demo.mytests;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.gui.test.*;
-import groovy.util.logging.Log;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
 
 public class HomePageTest implements IAbstractTest {
 
@@ -16,14 +14,16 @@ public class HomePageTest implements IAbstractTest {
     public void loginTest() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        LoginPage loginPage = homePage.getTopBarMenu().openLoginPage();
+        LoginPage loginPage = homePage.getMenuComponent().openLoginPage();
         Assert.assertTrue(loginPage.isLoginFormPresent(),"Login Form was not present.");
         Assert.assertTrue(loginPage.isLoginUserNameFieldPresent(),"UserName Field was not present.");
         Assert.assertTrue(loginPage.isLoginPasswordFieldPresent(),"Password Field was not present.");
         Assert.assertTrue(loginPage.isLoginButtonPresent(),"Log in button was not present.");
+        // This test one for already Registered
         loginPage.inputLogin(R.TESTDATA.get("user_name"),R.TESTDATA.get("password"));
         loginPage.clickLoginButton();
-        Assert.assertTrue(homePage.getTopBarMenu().isLogOutButtonPresent(),"Log out button was not present.");
+        Assert.assertTrue(homePage.getMenuComponent().isWelcomeMessagePresent(R.TESTDATA.get("user_name")),"" +
+                "Appropriate welcome message is not present.");
     }
 
     // P1
@@ -33,7 +33,7 @@ public class HomePageTest implements IAbstractTest {
         homePage.open();
         ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
         productPage.addToCartProduct();
-        CartPage cartPage = homePage.getTopBarMenu().openCartPage();
+        CartPage cartPage = homePage.getMenuComponent().openCartPage();
         ContactPage page = cartPage.getTopBarMenu().openContactPage();
         Assert.assertTrue(page.isSendMessageButtonPresent(),"Message button is not opened.");
     }
@@ -45,11 +45,9 @@ public class HomePageTest implements IAbstractTest {
         homePage.open();
         ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
         productPage.addToCartProduct();
-        CartPage cartPage = homePage.getTopBarMenu().openCartPage();
+        CartPage cartPage = homePage.getMenuComponent().openCartPage();
         cartPage.removeProductFromCart();
         Assert.assertTrue(cartPage.isPageOpened(),"Cart Page is not opened.");
-
-
     }
 
     //P3  Tested and Works
@@ -57,7 +55,7 @@ public class HomePageTest implements IAbstractTest {
     public void contactTest() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        ContactPage contactPage = homePage.getTopBarMenu().openContactPage();
+        ContactPage contactPage = homePage.getMenuComponent().openContactPage();
         Assert.assertTrue(contactPage.isPageOpened(),"Contact page is not opened.");
         Assert.assertTrue(contactPage.isContactNameFieldPresent(),"Name Field is not present.");
         Assert.assertTrue(contactPage.isEmailFieldPresent(),"Email Field is not present.");
@@ -73,18 +71,18 @@ public class HomePageTest implements IAbstractTest {
     public void checkLogOut() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-
-        LoginPage loginPage = homePage.getTopBarMenu().openLoginPage();
+        LoginPage loginPage = homePage.getMenuComponent().openLoginPage();
         Assert.assertTrue(loginPage.isLoginFormPresent(),"Login Form was not present.");
         Assert.assertTrue(loginPage.isLoginUserNameFieldPresent(),"UserName Field was not present.");
         Assert.assertTrue(loginPage.isLoginPasswordFieldPresent(),"Password Field was not present.");
         Assert.assertTrue(loginPage.isLoginButtonPresent(),"Log in button was not present.");
         loginPage.inputLogin(R.TESTDATA.get("user_name"),R.TESTDATA.get("password"));
         loginPage.clickLoginButton();
-        Assert.assertTrue(homePage.getTopBarMenu().isLogOutButtonPresent(),"Log out button was not present.");
-        homePage.getTopBarMenu().clickLogOutButton();
-        Assert.assertFalse(homePage.getTopBarMenu().isLogOutButtonPresent(),"Log out Button is still present.");
-
-
+        Assert.assertTrue(homePage.getMenuComponent().isLogOutButtonPresent(),"Log out button was not present.");
+        homePage.getMenuComponent().clickLogOutButton();
+        Assert.assertFalse(homePage.getMenuComponent().isLogOutButtonPresent(),"Log out Button is still present.");
     }
+
+
+
 }

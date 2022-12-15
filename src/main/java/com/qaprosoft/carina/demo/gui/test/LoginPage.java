@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 public class LoginPage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger(LoginPage.class);
 
-    @FindBy(xpath = "//*[@id=\"logInModal\"]/div/div")
+    @FindBy(xpath = "//div[@id='logInModal']//div[@class='modal-content']")
     private ExtendedWebElement loginForm;
 
     @FindBy(id = "loginusername")
@@ -19,7 +19,7 @@ public class LoginPage extends AbstractPage {
     @FindBy(id = "loginpassword")
     private ExtendedWebElement loginPasswordInput;
 
-    @FindBy(xpath = "//*[@id=\"logInModal\"]/div/div/div[3]/button[2]")
+    @FindBy(xpath = "//button[contains(text(),'Log in')]")
     private ExtendedWebElement loginButton;
 
     public LoginPage(WebDriver driver) {
@@ -41,7 +41,6 @@ public class LoginPage extends AbstractPage {
     public boolean isLoginButtonPresent() {
         return loginButton.isElementPresent();
     }
-
 
     public void inputLogin(String userName,String password) {
         loginUserNameInput.type(userName);

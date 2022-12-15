@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.gui.test;
+package com.qaprosoft.carina.demo.gui.test.util;
 
 import java.security.SecureRandom;
 import java.util.HashSet;
@@ -6,13 +6,13 @@ import java.util.Random;
 import java.util.Set;
 
 public class UserFactory {
-    private final String lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345674890";
+    private static final String lexicon = "ABCDEFGHIJKLMNOPQRSTUVWXYZ12345674890";
 
-    private final Set<String> identifiers = new HashSet<String>();
+    private static final Set<String> identifiers = new HashSet<String>();
 
-    private Random random = new Random();
+    private static Random random = new Random();
 
-    public String randomUserName() {
+    public static String getRandomUserName() {
         StringBuilder builder = new StringBuilder();
         while(builder.toString().length() == 0) {
             int length = random.nextInt(5)+5;
@@ -27,7 +27,7 @@ public class UserFactory {
         return builder.toString();
     }
 
-    public String randomPassword() {
+    public static String getRandomPassword() {
         final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         SecureRandom random = new SecureRandom();
         StringBuilder sb = new StringBuilder();

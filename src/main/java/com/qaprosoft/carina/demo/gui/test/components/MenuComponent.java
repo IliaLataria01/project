@@ -12,8 +12,6 @@ import org.openqa.selenium.support.FindBy;
 public class MenuComponent  extends AbstractUIObject {
     private static final Logger LOGGER = LogManager.getLogger(MenuComponent.class);
 
-
-
     @FindBy(linkText = "Contact")
     private ExtendedWebElement contactLink;
 
@@ -26,9 +24,11 @@ public class MenuComponent  extends AbstractUIObject {
     @FindBy(linkText = "Sign up")
     private ExtendedWebElement signUpLink;
 
-
     @FindBy(linkText = "Log out")
     private ExtendedWebElement logOutLink;
+
+    @FindBy(id = "nameofuser")
+    private ExtendedWebElement welcomeMessage;
 
     public MenuComponent(WebDriver driver, SearchContext searchContext) {
         super(driver,searchContext);
@@ -67,5 +67,9 @@ public class MenuComponent  extends AbstractUIObject {
 
     public void clickLogOutButton() {
         logOutLink.click();
+    }
+
+    public boolean isWelcomeMessagePresent(String userName) {
+        return welcomeMessage.isElementPresent() && welcomeMessage.getText().equals("Welcome " + userName);
     }
 }

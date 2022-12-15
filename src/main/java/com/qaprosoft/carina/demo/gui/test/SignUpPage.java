@@ -12,7 +12,7 @@ import java.util.*;
 public class SignUpPage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger(SignUpPage.class);
 
-    @FindBy(xpath = "//*[@id=\"signInModal\"]/div/div")
+    @FindBy(xpath = "//div[@id='signInModal']//div[@class='modal-content']")
     private ExtendedWebElement signUpForm;
 
     @FindBy(id = "sign-username")
@@ -21,15 +21,11 @@ public class SignUpPage extends AbstractPage {
     @FindBy(id = "sign-password")
     private ExtendedWebElement signPasswordInput;
 
-    @FindBy(xpath = "//*[@id=\"signInModal\"]/div/div/div[3]/button[2]")
+    @FindBy(xpath = "//button[contains(text(),'Sign up')]")
     private ExtendedWebElement signUpButton;
-
-
-    private UserFactory userFactory;
 
     public SignUpPage(WebDriver driver) {
         super(driver);
-        this.userFactory = new UserFactory();
     }
 
     public boolean isSignUpFormPresent() {return signUpForm.isElementPresent();}
@@ -40,9 +36,7 @@ public class SignUpPage extends AbstractPage {
 
     public boolean isSignUpButtonPresent() {return signUpButton.isElementPresent();}
 
-    public List<String> inputSignUp() {
-        String userName = userFactory.randomUserName();
-        String password = userFactory.randomPassword();
+    public List<String> inputSignUp(String userName,String password) {
         signUserInput.type(userName);
         signPasswordInput.type(password);
         return Arrays.asList(userName,password);
@@ -51,6 +45,5 @@ public class SignUpPage extends AbstractPage {
     public HomePage clickSignUpButton() {
         signUpButton.click();
         return new HomePage(driver);
-
     }
 }
