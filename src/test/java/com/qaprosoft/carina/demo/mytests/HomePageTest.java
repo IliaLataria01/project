@@ -2,7 +2,7 @@ package com.qaprosoft.carina.demo.mytests;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
-import com.qaprosoft.carina.demo.gui.test.*;
+import com.qaprosoft.carina.demo.gui.test.page.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -46,8 +46,8 @@ public class HomePageTest implements IAbstractTest {
         ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
         productPage.addToCartProduct();
         CartPage cartPage = homePage.getMenuComponent().openCartPage();
-        cartPage.removeProductFromCart();
-        Assert.assertTrue(cartPage.isPageOpened(),"Cart Page is not opened.");
+        cartPage.removeProductFromCart(R.TESTDATA.get("productName"));
+        Assert.assertFalse(cartPage.isProductPresent(),"Product was not deleted.");
     }
 
     //P3  Tested and Works

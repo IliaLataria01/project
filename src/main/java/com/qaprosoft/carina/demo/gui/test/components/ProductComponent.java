@@ -2,7 +2,7 @@ package com.qaprosoft.carina.demo.gui.test.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.gui.test.ProductPage;
+import com.qaprosoft.carina.demo.gui.test.page.ProductPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.SearchContext;
@@ -32,11 +32,5 @@ public class ProductComponent extends AbstractUIObject {
             }
         }
         throw new IllegalArgumentException("Product is not available");
-    }
-
-    public void search() {
-        for (ExtendedWebElement element : productElement) {
-            LOGGER.info(element);
-        }
     }
 }

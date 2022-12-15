@@ -2,7 +2,10 @@ package com.qaprosoft.carina.demo.gui.test.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.gui.test.*;
+import com.qaprosoft.carina.demo.gui.test.page.CartPage;
+import com.qaprosoft.carina.demo.gui.test.page.ContactPage;
+import com.qaprosoft.carina.demo.gui.test.page.LoginPage;
+import com.qaprosoft.carina.demo.gui.test.page.SignUpPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.SearchContext;
