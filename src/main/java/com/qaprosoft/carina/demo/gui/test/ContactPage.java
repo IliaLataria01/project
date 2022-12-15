@@ -3,7 +3,7 @@ package com.qaprosoft.carina.demo.gui.test;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.test.components.TopBarMenu;
+import com.qaprosoft.carina.demo.gui.test.components.MenuComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +13,7 @@ public class ContactPage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger(ContactPage.class);
 
     @FindBy(id = "navbarExample")
-    private TopBarMenu topBarMenu;
+    private MenuComponent topBarMenu;
 
 
     @FindBy(id = "recipient-email")
@@ -54,7 +54,7 @@ public class ContactPage extends AbstractPage {
         messageArea.type(message);
     }
 
-    public TopBarMenu getTopBarMenu() {
+    public MenuComponent getTopBarMenu() {
         return topBarMenu;
     }
 

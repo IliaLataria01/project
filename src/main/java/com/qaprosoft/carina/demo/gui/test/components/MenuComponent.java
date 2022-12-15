@@ -9,8 +9,8 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class TopBarMenu  extends AbstractUIObject {
-    private static final Logger LOGGER = LogManager.getLogger(TopBarMenu.class);
+public class MenuComponent  extends AbstractUIObject {
+    private static final Logger LOGGER = LogManager.getLogger(MenuComponent.class);
 
 
 
@@ -30,7 +30,7 @@ public class TopBarMenu  extends AbstractUIObject {
     @FindBy(linkText = "Log out")
     private ExtendedWebElement logOutLink;
 
-    public TopBarMenu(WebDriver driver, SearchContext searchContext) {
+    public MenuComponent(WebDriver driver, SearchContext searchContext) {
         super(driver,searchContext);
     }
 

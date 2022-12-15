@@ -3,7 +3,7 @@ package com.qaprosoft.carina.demo.gui.test;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.test.components.TopBarMenu;
+import com.qaprosoft.carina.demo.gui.test.components.MenuComponent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -16,7 +16,7 @@ public class CartPage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger(CartPage.class);
 
     @FindBy(id = "navbarExample")
-    private TopBarMenu topBarMenu;
+    private MenuComponent topBarMenu;
 
     @FindBy(xpath = "//*[@class=\"success\"]//a")
     private ExtendedWebElement product;
@@ -28,7 +28,7 @@ public class CartPage extends AbstractPage {
         setUiLoadedMarker(product);
     }
 
-    public TopBarMenu getTopBarMenu() {
+    public MenuComponent getTopBarMenu() {
         return topBarMenu;
     }
 
