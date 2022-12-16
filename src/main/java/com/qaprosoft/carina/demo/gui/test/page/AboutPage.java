@@ -24,13 +24,16 @@ public class AboutPage extends AbstractPage {
         return video.isElementPresent();
     }
 
+    public boolean isCloseButtonPresent() {
+        return closeButton.isElementPresent();
+    }
+
     public void playVideo(int time) throws InterruptedException {
         video.click();
         Thread.sleep(time);
     }
 
     public void clickCloseButton() {
-        assertElementPresent(closeButton);
         closeButton.click();
     }
 }

@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class CartPage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger(CartPage.class);
-    private final String URL = "https://demoblaze.com/cart.html";
 
     @FindBy(id = "navbarExample")
     private MenuComponent topBarMenu;
@@ -25,7 +24,6 @@ public class CartPage extends AbstractPage {
 
     public CartPage(WebDriver driver) {
         super(driver);
-        setPageAbsoluteURL(URL);
     }
 
     public MenuComponent getTopBarMenu() {

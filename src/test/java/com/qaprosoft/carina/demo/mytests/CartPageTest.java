@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.gui.test.page.CartPage;
 import com.qaprosoft.carina.demo.gui.test.page.ConfirmationPage;
+import com.qaprosoft.carina.demo.gui.test.page.HomePage;
 import com.qaprosoft.carina.demo.gui.test.page.OrderPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -12,8 +13,9 @@ public class CartPageTest implements IAbstractTest {
 
     @Test
     public void orderTest() {
-        CartPage cartPage = new CartPage(getDriver());
-        cartPage.open();
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        CartPage cartPage = homePage.getMenuComponent().openCartPage();
         Assert.assertTrue(cartPage.isOrderButtonPresent(), "Order Button was not present.");
         OrderPage orderPage = cartPage.clickOrderButton();
         orderPage.fillTheForm(

@@ -8,6 +8,8 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class CategoryComponent extends AbstractUIObject {
     private static final Logger LOGGER = LogManager.getLogger(CategoryComponent.class);
 
@@ -20,6 +22,8 @@ public class CategoryComponent extends AbstractUIObject {
     @FindBy(id = "tbodyid")
     private ExtendedWebElement productContainer;
 
+    @FindBy(xpath = "//div[@id='tbodyid']//div")
+    private List<ExtendedWebElement> products;
 
     public CategoryComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
@@ -27,6 +31,10 @@ public class CategoryComponent extends AbstractUIObject {
 
     public boolean isProductContainerPresent() {
         return productContainer.isElementPresent();
+    }
+
+    public boolean checkProducts() {
+        return products.size() >= 1;
     }
 
     public void switchCategory(Category category) {

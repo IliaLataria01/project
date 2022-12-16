@@ -109,6 +109,13 @@ public class HomePageTest implements IAbstractTest {
         CategoryComponent categoryComponent = homePage.getCategoryComponent();
         categoryComponent.switchCategory(Category.MONITORS);
         Assert.assertTrue(categoryComponent.isProductContainerPresent(), "Product Container is not present.");
+        Assert.assertTrue(categoryComponent.checkProducts(), "products size is < 1");
+        categoryComponent.switchCategory(Category.PHONES);
+        Assert.assertTrue(categoryComponent.isProductContainerPresent(), "Product Container is not present.");
+        Assert.assertTrue(categoryComponent.checkProducts(), "products size is < 1");
+        categoryComponent.switchCategory(Category.LAPTOPS);
+        Assert.assertTrue(categoryComponent.isProductContainerPresent(), "Product Container is not present.");
+        Assert.assertTrue(categoryComponent.checkProducts(), "products size is < 1");
     }
 
     @Test
@@ -118,6 +125,7 @@ public class HomePageTest implements IAbstractTest {
         AboutPage aboutPage = homePage.getMenuComponent().openAboutPage();
         Assert.assertTrue(aboutPage.isVideoPresent(), "Video is not present");
         aboutPage.playVideo(10000); // Let's say 10 seconds
+        Assert.assertTrue(aboutPage.isCloseButtonPresent(), "Close button is not present");
         aboutPage.clickCloseButton();
         Assert.assertTrue(homePage.isPageOpened(), "Home Page is not opened");
     }
@@ -127,10 +135,29 @@ public class HomePageTest implements IAbstractTest {
     public void carouselTest() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.getCarouselComponent().isNextButtonPresent(), "Next Page button is not present");
+        Assert.assertTrue(
+                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
+                "Product is not present");
         homePage.getCarouselComponent().clickRight();
+        Assert.assertTrue(
+                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
+                "Product is not present");
+        Assert.assertTrue(homePage.getCarouselComponent().isNextButtonPresent(), "Next Page button is not present");
         homePage.getCarouselComponent().clickRight();
+        Assert.assertTrue(
+                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
+                "Product is not present");
+        Assert.assertTrue(homePage.getCarouselComponent().isNextButtonPresent(), "Next Page button is not present");
         homePage.getCarouselComponent().clickRight();
+        Assert.assertTrue(
+                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
+                "Product is not present");
+        Assert.assertTrue(homePage.getCarouselComponent().isPreviousButtonPresent(), "Previous Page button is not present");
         homePage.getCarouselComponent().clickLeft();
+        Assert.assertTrue(
+                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
+                "Product is not present");
         Assert.assertTrue(homePage.isPageOpened(), "Home Page is not opened.");
 
     }

@@ -28,25 +28,35 @@ public class CarouselComponent extends AbstractUIObject {
         super(driver, searchContext);
     }
 
+    public boolean isProductPresent(int count) {
+        return items.get(count).isElementPresent();
+    }
+
+    public boolean isNextButtonPresent() {
+        return nextItem.isElementPresent();
+    }
+
+    public boolean isPreviousButtonPresent() {
+        return previousItem.isElementPresent();
+    }
+
+    public int getCount() {
+        return count;
+    }
+
     public void clickRight() {
-        assertElementPresent(nextItem);
-        assertElementPresent(items.get(count));
         nextItem.click();
         count++;
         if (count >= items.size()) {
             count = 0;
         }
-        assertElementPresent(items.get(count));
     }
 
     public void clickLeft() {
-        assertElementPresent(nextItem);
-        assertElementPresent(items.get(count));
         previousItem.click();
         count--;
         if (count < 0) {
             count = items.size() - 1;
         }
-        assertElementPresent(items.get(count));
     }
 }
