@@ -11,6 +11,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class CartPage extends AbstractPage {
     private static final Logger LOGGER = LogManager.getLogger(CartPage.class);
+    private final String URL = "https://demoblaze.com/cart.html";
 
     @FindBy(id = "navbarExample")
     private MenuComponent topBarMenu;
@@ -18,9 +19,13 @@ public class CartPage extends AbstractPage {
     @FindBy(xpath = "//td[contains(text(),'%s')]/parent::tr//a[contains(text(),'Delete')]")
     private ExtendedWebElement product;
 
+    @FindBy(xpath = "//button[contains(text(),'Place Order')]")
+    private ExtendedWebElement orderButton;
+
 
     public CartPage(WebDriver driver) {
         super(driver);
+        setPageAbsoluteURL(URL);
     }
 
     public MenuComponent getTopBarMenu() {
@@ -33,5 +38,12 @@ public class CartPage extends AbstractPage {
 
     public void removeProductFromCart(String productName) {
         product.format(productName).click();
+    }
+
+    public boolean isOrderButtonPresent() { return orderButton.isElementPresent();}
+
+    public OrderPage clickOrderButton() {
+        orderButton.click();
+        return new OrderPage(driver);
     }
 }
