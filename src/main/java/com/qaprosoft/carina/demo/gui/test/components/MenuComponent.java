@@ -2,10 +2,7 @@ package com.qaprosoft.carina.demo.gui.test.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.gui.test.page.CartPage;
-import com.qaprosoft.carina.demo.gui.test.page.ContactPage;
-import com.qaprosoft.carina.demo.gui.test.page.LoginPage;
-import com.qaprosoft.carina.demo.gui.test.page.SignUpPage;
+import com.qaprosoft.carina.demo.gui.test.page.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.SearchContext;
@@ -17,6 +14,9 @@ public class MenuComponent extends AbstractUIObject {
 
     @FindBy(linkText = "Contact")
     private ExtendedWebElement contactLink;
+
+    @FindBy(linkText = "About us")
+    private ExtendedWebElement aboutLink;
 
     @FindBy(linkText = "Cart")
     private ExtendedWebElement cartLink;
@@ -49,6 +49,10 @@ public class MenuComponent extends AbstractUIObject {
         return signUpLink.isElementPresent();
     }
 
+    public boolean isABoutLinkPresent() {
+        return aboutLink.isElementPresent();
+    }
+
     public boolean isCartButtonPresent() {
         return cartLink.isElementPresent();
     }
@@ -75,6 +79,11 @@ public class MenuComponent extends AbstractUIObject {
     public SignUpPage openSignUpPage() {
         signUpLink.click();
         return new SignUpPage(driver);
+    }
+
+    public AboutPage openAboutPage() {
+        aboutLink.click();
+        return new AboutPage(driver);
     }
 
     public void clickLogOutButton() {

@@ -109,6 +109,16 @@ public class HomePageTest implements IAbstractTest {
         CategoryComponent categoryComponent = homePage.getCategoryComponent();
         categoryComponent.switchCategory(Category.MONITORS);
         Assert.assertTrue(categoryComponent.isProductContainerPresent(),"Product Container is not present.");
+    }
 
+    @Test
+    public void aboutTest() throws InterruptedException {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        AboutPage aboutPage = homePage.getMenuComponent().openAboutPage();
+        Assert.assertTrue(aboutPage.isVideoPresent(),"Video is not present");
+        aboutPage.playVideo(10000); // Let's say 10 seconds
+        aboutPage.clickCloseButton();
+        Assert.assertTrue(homePage.isPageOpened(),"Home Page is not opened");
     }
 }
