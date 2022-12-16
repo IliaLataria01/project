@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mytests;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.gui.test.page.*;
+import com.qaprosoft.carina.demo.gui.test.util.UserFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -84,5 +85,19 @@ public class HomePageTest implements IAbstractTest {
         Assert.assertFalse(homePage.getMenuComponent().isLogOutButtonPresent(), "Log out Button is still present.");
     }
 
+
+    @Test
+    public void signUpTest() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        SignUpPage signUpPage = homePage.getMenuComponent().openSignUpPage();
+        Assert.assertTrue(signUpPage.isSignUpFormPresent(),"Sign up form was not present.");
+        Assert.assertTrue(signUpPage.isSignUpUserNameFieldPresent(),"UserName field was not present.");
+        Assert.assertTrue(signUpPage.isSignUpPasswordFieldPresent(),"Password field was not present.");
+        signUpPage.inputSignUp(UserFactory.getRandomUserName(),UserFactory.getRandomPassword());
+        signUpPage.clickSignUpButton();
+        Assert.assertTrue(homePage.getMenuComponent().isSignUpButtonPresent(),"Sign up button was not present.");
+        Assert.assertTrue(homePage.getMenuComponent().isLoginButtonPresent(),"Login button was not present.");
+    }
 
 }

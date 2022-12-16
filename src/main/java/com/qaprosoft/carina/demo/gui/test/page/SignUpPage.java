@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.gui.test.page;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,8 +51,7 @@ public class SignUpPage extends AbstractPage {
         return Arrays.asList(userName, password);
     }
 
-    public HomePage clickSignUpButton() {
+    public void clickSignUpButton() {
         signUpButton.click();
-        return new HomePage(driver);
     }
 }
