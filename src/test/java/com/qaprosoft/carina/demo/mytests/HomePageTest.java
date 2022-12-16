@@ -2,6 +2,8 @@ package com.qaprosoft.carina.demo.mytests;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.demo.gui.test.components.Category;
+import com.qaprosoft.carina.demo.gui.test.components.CategoryComponent;
 import com.qaprosoft.carina.demo.gui.test.page.*;
 import com.qaprosoft.carina.demo.gui.test.util.UserFactory;
 import org.testng.Assert;
@@ -100,4 +102,13 @@ public class HomePageTest implements IAbstractTest {
         Assert.assertTrue(homePage.getMenuComponent().isLoginButtonPresent(),"Login button was not present.");
     }
 
+    @Test
+    public void categoryTest() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        CategoryComponent categoryComponent = homePage.getCategoryComponent();
+        categoryComponent.switchCategory(Category.MONITORS);
+        Assert.assertTrue(categoryComponent.isProductContainerPresent(),"Product Container is not present.");
+
+    }
 }

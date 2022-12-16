@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.gui.test.page;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.gui.test.components.CategoryComponent;
 import com.qaprosoft.carina.demo.gui.test.components.MenuComponent;
 import com.qaprosoft.carina.demo.gui.test.components.ProductComponent;
 
@@ -20,6 +21,9 @@ public class HomePage extends AbstractPage {
     @FindBy(id = "tbodyid")
     private ProductComponent productComponent;
 
+    @FindBy(xpath = "//div[@class='list-group']")
+    private CategoryComponent categoryComponent;
+
     @FindBy(id = "next2")
     private ExtendedWebElement nextPage;
 
@@ -33,13 +37,11 @@ public class HomePage extends AbstractPage {
         return nextPage.isElementPresent();
     }
 
-    public MenuComponent getMenuComponent() {
-        return menuComponent;
-    }
+    public MenuComponent getMenuComponent() {return menuComponent;}
 
     public ProductComponent getProductComponent() {
         return productComponent;
     }
 
-
+    public CategoryComponent getCategoryComponent() { return categoryComponent; }
 }
