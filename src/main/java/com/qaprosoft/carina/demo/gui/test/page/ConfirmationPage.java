@@ -18,8 +18,9 @@ public class ConfirmationPage extends AbstractPage {
         super(driver);
     }
 
+    public boolean isConfirmButtonPresent() { return confirmButton.isElementPresent();}
+
     public void clickConfirmButton() {
-        assertElementPresent(confirmButton);
         confirmButton.click();
     }
 

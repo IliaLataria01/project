@@ -53,8 +53,11 @@ public class OrderPage extends AbstractPage {
         yearField.type(year);
     }
 
+    public boolean isPurchaseButtonPresent() {
+        return purchaseButton.isElementPresent();
+    }
+
     public ConfirmationPage clickPurchaseButton() {
-        assertElementPresent(purchaseButton);
         purchaseButton.click();
         return new ConfirmationPage(driver);
     }
