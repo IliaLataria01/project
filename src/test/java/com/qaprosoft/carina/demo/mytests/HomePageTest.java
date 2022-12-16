@@ -93,13 +93,13 @@ public class HomePageTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         SignUpPage signUpPage = homePage.getMenuComponent().openSignUpPage();
-        Assert.assertTrue(signUpPage.isSignUpFormPresent(),"Sign up form was not present.");
-        Assert.assertTrue(signUpPage.isSignUpUserNameFieldPresent(),"UserName field was not present.");
-        Assert.assertTrue(signUpPage.isSignUpPasswordFieldPresent(),"Password field was not present.");
-        signUpPage.inputSignUp(UserFactory.getRandomUserName(),UserFactory.getRandomPassword());
+        Assert.assertTrue(signUpPage.isSignUpFormPresent(), "Sign up form was not present.");
+        Assert.assertTrue(signUpPage.isSignUpUserNameFieldPresent(), "UserName field was not present.");
+        Assert.assertTrue(signUpPage.isSignUpPasswordFieldPresent(), "Password field was not present.");
+        signUpPage.inputSignUp(UserFactory.getRandomUserName(), UserFactory.getRandomPassword());
         signUpPage.clickSignUpButton();
-        Assert.assertTrue(homePage.getMenuComponent().isSignUpButtonPresent(),"Sign up button was not present.");
-        Assert.assertTrue(homePage.getMenuComponent().isLoginButtonPresent(),"Login button was not present.");
+        Assert.assertTrue(homePage.getMenuComponent().isSignUpButtonPresent(), "Sign up button was not present.");
+        Assert.assertTrue(homePage.getMenuComponent().isLoginButtonPresent(), "Login button was not present.");
     }
 
     @Test
@@ -108,7 +108,7 @@ public class HomePageTest implements IAbstractTest {
         homePage.open();
         CategoryComponent categoryComponent = homePage.getCategoryComponent();
         categoryComponent.switchCategory(Category.MONITORS);
-        Assert.assertTrue(categoryComponent.isProductContainerPresent(),"Product Container is not present.");
+        Assert.assertTrue(categoryComponent.isProductContainerPresent(), "Product Container is not present.");
     }
 
     @Test
@@ -116,9 +116,22 @@ public class HomePageTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         AboutPage aboutPage = homePage.getMenuComponent().openAboutPage();
-        Assert.assertTrue(aboutPage.isVideoPresent(),"Video is not present");
+        Assert.assertTrue(aboutPage.isVideoPresent(), "Video is not present");
         aboutPage.playVideo(10000); // Let's say 10 seconds
         aboutPage.clickCloseButton();
-        Assert.assertTrue(homePage.isPageOpened(),"Home Page is not opened");
+        Assert.assertTrue(homePage.isPageOpened(), "Home Page is not opened");
+    }
+
+
+    @Test
+    public void carouselTest() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        homePage.getCarouselComponent().clickRight();
+        homePage.getCarouselComponent().clickRight();
+        homePage.getCarouselComponent().clickRight();
+        homePage.getCarouselComponent().clickLeft();
+        Assert.assertTrue(homePage.isPageOpened(), "Home Page is not opened.");
+
     }
 }

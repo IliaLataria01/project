@@ -31,10 +31,14 @@ public class CategoryComponent extends AbstractUIObject {
 
     public void switchCategory(Category category) {
         switch (category) {
-            case MIX: mix.click();
-            case PHONES: categoryItem.format(category.getName()).click();
-            case LAPTOPS: categoryItem.format(category.getName()).click();
-            case MONITORS: categoryItem.format(category.getName()).click();
+            case MIX:
+                mix.click();
+            case PHONES:
+                categoryItem.format(category.getName()).click();
+            case LAPTOPS:
+                categoryItem.format(category.getName()).click();
+            case MONITORS:
+                categoryItem.format(category.getName()).click();
         }
     }
 }

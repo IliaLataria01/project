@@ -40,7 +40,9 @@ public class CartPage extends AbstractPage {
         product.format(productName).click();
     }
 
-    public boolean isOrderButtonPresent() { return orderButton.isElementPresent();}
+    public boolean isOrderButtonPresent() {
+        return orderButton.isElementPresent();
+    }
 
     public OrderPage clickOrderButton() {
         orderButton.click();

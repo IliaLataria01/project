@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.gui.test.page;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.gui.test.components.CarouselComponent;
 import com.qaprosoft.carina.demo.gui.test.components.CategoryComponent;
 import com.qaprosoft.carina.demo.gui.test.components.MenuComponent;
 import com.qaprosoft.carina.demo.gui.test.components.ProductComponent;
@@ -27,6 +28,9 @@ public class HomePage extends AbstractPage {
     @FindBy(id = "next2")
     private ExtendedWebElement nextPage;
 
+    @FindBy(xpath = "//div[@class='carousel-inner']")
+    private CarouselComponent carouselComponent;
+
     public HomePage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
@@ -37,11 +41,19 @@ public class HomePage extends AbstractPage {
         return nextPage.isElementPresent();
     }
 
-    public MenuComponent getMenuComponent() {return menuComponent;}
+    public MenuComponent getMenuComponent() {
+        return menuComponent;
+    }
 
     public ProductComponent getProductComponent() {
         return productComponent;
     }
 
-    public CategoryComponent getCategoryComponent() { return categoryComponent; }
+    public CategoryComponent getCategoryComponent() {
+        return categoryComponent;
+    }
+
+    public CarouselComponent getCarouselComponent() {
+        return carouselComponent;
+    }
 }
