@@ -38,18 +38,36 @@ public class OrderPage extends AbstractPage {
         super(driver);
     }
 
+    public boolean isNameFieldPresent() {
+        return nameField.isElementPresent();
+    }
+
+    public boolean isCountryFieldPresent() {
+        return countryField.isElementPresent();
+    }
+
+    public boolean isCityFieldPresent() {
+        return cityField.isElementPresent();
+    }
+
+    public boolean isCardFieldPresent() {
+        return cardField.isElementPresent();
+    }
+
+    public boolean isMonthFieldPresent() {
+        return monthField.isElementPresent();
+    }
+
+    public boolean isYearFieldPresent() {
+        return yearField.isElementPresent();
+    }
+
     public void fillTheForm(String name, String country, String city, String creditCard, String month, String year) {
-        assertElementPresent(nameField);
         nameField.type(name);
-        assertElementPresent(countryField);
         countryField.type(country);
-        assertElementPresent(cityField);
         cityField.type(city);
-        assertElementPresent(cardField);
         cardField.type(creditCard);
-        assertElementPresent(monthField);
         monthField.type(month);
-        assertElementPresent(yearField);
         yearField.type(year);
     }
 

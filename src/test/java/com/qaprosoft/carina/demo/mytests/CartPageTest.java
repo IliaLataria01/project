@@ -17,6 +17,12 @@ public class CartPageTest implements IAbstractTest {
         CartPage cartPage = homePage.getMenuComponent().openCartPage();
         Assert.assertTrue(cartPage.isOrderButtonPresent(), "Order Button was not present.");
         OrderPage orderPage = cartPage.clickOrderButton();
+        Assert.assertTrue(orderPage.isNameFieldPresent(), "Name Field is not present.");
+        Assert.assertTrue(orderPage.isCountryFieldPresent(), "Country Field is not present.");
+        Assert.assertTrue(orderPage.isCityFieldPresent(), "City Field is not present.");
+        Assert.assertTrue(orderPage.isCardFieldPresent(), "Card Field is not present.");
+        Assert.assertTrue(orderPage.isMonthFieldPresent(), "Month Field is not present.");
+        Assert.assertTrue(orderPage.isYearFieldPresent(), "Year Field is not present.");
         orderPage.fillTheForm(
                 R.TESTDATA.get("user_name"),
                 R.TESTDATA.get("country"),
