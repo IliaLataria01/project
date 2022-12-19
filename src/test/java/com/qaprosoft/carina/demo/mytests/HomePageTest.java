@@ -87,13 +87,13 @@ public class HomePageTest implements IAbstractTest {
         CategoryComponent categoryComponent = homePage.getCategoryComponent();
         categoryComponent.switchCategory(Category.MONITORS);
         Assert.assertTrue(categoryComponent.isProductContainerPresent(), "Product Container is not present.");
-        Assert.assertTrue(categoryComponent.checkProducts(), "products size is < 1");
+        Assert.assertTrue(categoryComponent.getProductsCount() >= 1, "No product shown on page.");
         categoryComponent.switchCategory(Category.PHONES);
         Assert.assertTrue(categoryComponent.isProductContainerPresent(), "Product Container is not present.");
-        Assert.assertTrue(categoryComponent.checkProducts(), "products size is < 1");
+        Assert.assertTrue(categoryComponent.getProductsCount() >= 1, "No product shown on page.");
         categoryComponent.switchCategory(Category.LAPTOPS);
         Assert.assertTrue(categoryComponent.isProductContainerPresent(), "Product Container is not present.");
-        Assert.assertTrue(categoryComponent.checkProducts(), "products size is < 1");
+        Assert.assertTrue(categoryComponent.getProductsCount() >= 1, "No product shown on page.");
     }
 
     @Test

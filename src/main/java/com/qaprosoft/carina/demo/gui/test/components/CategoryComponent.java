@@ -33,8 +33,8 @@ public class CategoryComponent extends AbstractUIObject {
         return productContainer.isElementPresent();
     }
 
-    public boolean checkProducts() {
-        return products.size() >= 1;
+    public int getProductsCount() {
+        return products.size();
     }
 
     public void switchCategory(Category category) {
