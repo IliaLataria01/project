@@ -31,6 +31,9 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//div[@class='carousel-inner']")
     private CarouselComponent carouselComponent;
 
+    @FindBy(id = "tbodyid")
+    private ExtendedWebElement container;
+
     public HomePage(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
@@ -43,6 +46,10 @@ public class HomePage extends AbstractPage {
 
     public MenuComponent getMenuComponent() {
         return menuComponent;
+    }
+
+    public boolean isContainerPresent() {
+        return container.isElementPresent();
     }
 
     public ProductComponent getProductComponent() {

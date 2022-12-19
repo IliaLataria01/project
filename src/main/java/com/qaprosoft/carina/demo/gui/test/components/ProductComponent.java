@@ -17,11 +17,18 @@ public class ProductComponent extends AbstractUIObject {
     @FindBy(xpath = "//*[@id='tbodyid']//a[@class='hrefch']")
     private List<ExtendedWebElement> productElement;
 
+    @FindBy(xpath = "//*[@id='tbodyid']")
+    private ExtendedWebElement container;
+
 
     public ProductComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
+
+    public boolean isContainerPresent() {
+        return container.isElementPresent();
+    }
 
     public ProductPage clickProduct(String product) {
         for (ExtendedWebElement element : productElement) {

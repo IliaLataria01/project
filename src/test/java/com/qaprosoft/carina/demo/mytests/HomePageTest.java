@@ -29,29 +29,7 @@ public class HomePageTest implements IAbstractTest {
                 "Appropriate welcome message is not present.");
     }
 
-    // P1
-    @Test
-    public void additionOfProductInTheCartTest() {
-        HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
-        productPage.addToCartProduct();
-        CartPage cartPage = homePage.getMenuComponent().openCartPage();
-        ContactPage page = cartPage.getTopBarMenu().openContactPage();
-        Assert.assertTrue(page.isSendMessageButtonPresent(), "Message button is not opened.");
-    }
 
-    // P2
-    @Test
-    public void removalFromCartTest() {
-        HomePage homePage = new HomePage(getDriver());
-        homePage.open();
-        ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
-        productPage.addToCartProduct();
-        CartPage cartPage = homePage.getMenuComponent().openCartPage();
-        cartPage.removeProductFromCart(R.TESTDATA.get("productName"));
-        Assert.assertFalse(cartPage.isProductPresent(R.TESTDATA.get("productName")), "Product was not deleted.");
-    }
 
     //P3  Tested and Works
     @Test

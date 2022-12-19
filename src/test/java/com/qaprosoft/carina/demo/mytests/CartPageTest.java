@@ -12,6 +12,7 @@ public class CartPageTest implements IAbstractTest {
     public void orderTest() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(),"Home Page was not opened.");
         ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
         productPage.addToCartProduct();
         CartPage cartPage = homePage.getMenuComponent().openCartPage();
@@ -36,5 +37,30 @@ public class CartPageTest implements IAbstractTest {
         Assert.assertTrue(confirmationPage.isConfirmButtonPresent(), "Confirm button was not present.");
         confirmationPage.clickConfirmButton();
         Assert.assertTrue(homePage.isPageOpened(), "Home Page was not opened.");
+    }
+
+    @Test
+    public void additionOfProductInTheCartTest() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(),"Home Page was not opened.");
+        Assert.assertTrue(homePage.getProductComponent().isContainerPresent(),"Container is not present.");
+        ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
+        productPage.addToCartProduct();
+        CartPage cartPage = homePage.getMenuComponent().openCartPage();
+        ContactPage page = cartPage.getTopBarMenu().openContactPage();
+        Assert.assertTrue(page.isSendMessageButtonPresent(), "Message button is not opened.");
+    }
+
+    @Test
+    public void removalFromCartTest() {
+        HomePage homePage = new HomePage(getDriver());
+        homePage.open();
+        Assert.assertTrue(homePage.isPageOpened(),"Home Page was not opened.");
+        ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
+        productPage.addToCartProduct();
+        CartPage cartPage = homePage.getMenuComponent().openCartPage();
+        cartPage.removeProductFromCart(R.TESTDATA.get("productName"));
+        Assert.assertFalse(cartPage.isProductPresent(R.TESTDATA.get("productName")), "Product was not deleted.");
     }
 }
