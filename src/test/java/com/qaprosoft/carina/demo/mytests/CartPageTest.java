@@ -13,6 +13,7 @@ public class CartPageTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(),"Home Page was not opened.");
+        Assert.assertTrue(homePage.getProductComponent().isContainerPresent(),"Container is not present.");
         ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
         productPage.addToCartProduct();
         CartPage cartPage = homePage.getMenuComponent().openCartPage();
@@ -57,6 +58,7 @@ public class CartPageTest implements IAbstractTest {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
         Assert.assertTrue(homePage.isPageOpened(),"Home Page was not opened.");
+        Assert.assertTrue(homePage.getProductComponent().isContainerPresent(),"Container is not present.");
         ProductPage productPage = homePage.getProductComponent().clickProduct((R.TESTDATA.get("productName")));
         productPage.addToCartProduct();
         CartPage cartPage = homePage.getMenuComponent().openCartPage();
