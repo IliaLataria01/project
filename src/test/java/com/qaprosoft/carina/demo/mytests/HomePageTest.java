@@ -135,30 +135,13 @@ public class HomePageTest implements IAbstractTest {
     public void carouselTest() {
         HomePage homePage = new HomePage(getDriver());
         homePage.open();
-        Assert.assertTrue(homePage.getCarouselComponent().isNextButtonPresent(), "Next Page button is not present");
-        Assert.assertTrue(
-                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
-                "Product is not present");
-        homePage.getCarouselComponent().clickRight();
-        Assert.assertTrue(
-                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
-                "Product is not present");
-        Assert.assertTrue(homePage.getCarouselComponent().isNextButtonPresent(), "Next Page button is not present");
-        homePage.getCarouselComponent().clickRight();
-        Assert.assertTrue(
-                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
-                "Product is not present");
-        Assert.assertTrue(homePage.getCarouselComponent().isNextButtonPresent(), "Next Page button is not present");
-        homePage.getCarouselComponent().clickRight();
-        Assert.assertTrue(
-                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
-                "Product is not present");
-        Assert.assertTrue(homePage.getCarouselComponent().isPreviousButtonPresent(), "Previous Page button is not present");
-        homePage.getCarouselComponent().clickLeft();
-        Assert.assertTrue(
-                homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
-                "Product is not present");
+        for (int i = 0; i < 5; i++) {
+            Assert.assertTrue(homePage.getCarouselComponent().isNextButtonPresent(), "Next Page button is not present");
+            Assert.assertTrue(
+                    homePage.getCarouselComponent().isProductPresent(homePage.getCarouselComponent().getCount()),
+                    "Product is not present");
+            homePage.getCarouselComponent().clickRight();
+        }
         Assert.assertTrue(homePage.isPageOpened(), "Home Page is not opened.");
-
     }
 }
