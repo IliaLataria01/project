@@ -1,88 +1,56 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
-import org.apache.commons.lang3.RandomStringUtils;
+import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.ClassChain;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-
-@DeviceType(pageType = Type.IOS_PHONE, parentClass = LoginPageBase.class)
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase {
 
-	@FindBy(xpath = "type = 'XCUIElementTypeTextField'")
-	@Predicate
-	private ExtendedWebElement nameInputField;
+    @FindBy(xpath = "name = 'test-Username'")
+    @Predicate
+    private ExtendedWebElement userNameField;
 
-	@FindBy(xpath = "type = 'XCUIElementTypeSecureTextField'")
-	@Predicate
-	private ExtendedWebElement passwordInputField;
 
-	@FindBy(xpath = "name = 'Male' AND type = 'XCUIElementTypeButton'")
-	@Predicate
-	private ExtendedWebElement maleRadioBtn;
+    @FindBy(xpath = "name = 'test-Password'")
+    @Predicate
+    private ExtendedWebElement passwordField;
 
-	@FindBy(xpath = "**/XCUIElementTypeButton[`name == 'Female'`]")
-	@ClassChain
-	private ExtendedWebElement femaleRadioBtn;
 
-	@FindBy(xpath = "**/XCUIElementTypeButton[`name CONTAINS 'checkbox'`]")
-	@ClassChain
-	private ExtendedWebElement privacyPolicyCheckbox;
+    @FindBy(xpath = "label == 'LOGIN' AND name == 'test-LOGIN'")
+    @Predicate
+    private ExtendedWebElement loginButton;
 
-	@FindBy(xpath = "name = 'LOGIN'")
-	@Predicate
-	private ExtendedWebElement loginBtn;
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
-	public LoginPage(WebDriver driver) {
-		super(driver);
-	}
 
-	@Override
-	public void typeName(String name) {
-		nameInputField.type(name);
-	}
+    public boolean isUserNameFieldPresent() {
+        return userNameField.isElementPresent();
+    }
 
-	@Override
-	public void typePassword(String password) {
-		passwordInputField.type(password);
-	}
+    public boolean isPasswordFieldPresent() {
+        return passwordField.isElementPresent();
+    }
 
-	@Override
-	public void selectMaleSex() {
-		maleRadioBtn.click();
-	}
+    public boolean isLoginButtonPresent() {
+        return loginButton.isElementPresent();
+    }
 
-	@Override
-	public void checkPrivacyPolicyCheckbox() {
-		privacyPolicyCheckbox.click();
-	}
+    @Override
+    public WelcomePageBase clickLoginButton() {
+        loginButton.click();
+        return initPage(getDriver(), WelcomePageBase.class);
+    }
 
-	@Override
-	public CarinaDescriptionPageBase clickLoginBtn() {
-		loginBtn.click();
-		return initPage(getDriver(), CarinaDescriptionPageBase.class);
-	}
-
-	@Override
-	public boolean isLoginBtnActive() {
-		return Boolean.parseBoolean(loginBtn.getAttribute("enabled"));
-	}
-
-	@Override
-	public CarinaDescriptionPageBase login(){
-		String username = "Test user";
-		String password = RandomStringUtils.randomAlphabetic(10);
-		typeName(username);
-		typePassword(password);
-		selectMaleSex();
-		checkPrivacyPolicyCheckbox();
-		return clickLoginBtn();
-	}
-
+    public void inputLogin(String userName) {
+        userNameField.type(userName);
+        passwordField.type(R.TESTDATA.get("password"));
+    }
 }

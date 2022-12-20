@@ -1,27 +1,21 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
-import org.openqa.selenium.WebDriver;
-
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import org.openqa.selenium.WebDriver;
 
 public abstract class LoginPageBase extends AbstractPage {
 
-	public LoginPageBase(WebDriver driver) {
-		super(driver);
-	}
+    public LoginPageBase(WebDriver driver) {
+        super(driver);
+    }
 
-	public abstract void typeName(String name);
+    public abstract WelcomePageBase clickLoginButton();
 
-	public abstract void typePassword(String password);
+    public abstract boolean isUserNameFieldPresent();
 
-	public abstract void selectMaleSex();
+    public abstract boolean isPasswordFieldPresent();
 
-	public abstract void checkPrivacyPolicyCheckbox();
+    public abstract void inputLogin(String userName);
 
-	public abstract CarinaDescriptionPageBase clickLoginBtn();
-
-	public abstract boolean isLoginBtnActive();
-
-	public abstract CarinaDescriptionPageBase login();
-
+    public abstract boolean isLoginButtonPresent();
 }
