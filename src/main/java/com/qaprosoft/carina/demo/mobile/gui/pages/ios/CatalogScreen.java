@@ -4,17 +4,18 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.ProductPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.ProductScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.ProductViewOptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = WelcomePageBase.class)
-public class WelcomePage extends WelcomePageBase {
-    private static final Logger LOGGER = LogManager.getLogger(WelcomePage.class);
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CatalogScreenBase.class)
+public class CatalogScreen extends CatalogScreenBase {
+    private static final Logger LOGGER = LogManager.getLogger(CatalogScreen.class);
 
 
     @FindBy(xpath = "label == 'PRODUCTS' AND name == 'PRODUCTS' AND type == 'XCUIElementTypeOther'")
@@ -32,7 +33,7 @@ public class WelcomePage extends WelcomePageBase {
 
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == '%s'`]")
-    private ExtendedWebElement product;
+    private ExtendedWebElement specificProductTitle;
 
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Cart\"`]")
@@ -41,7 +42,7 @@ public class WelcomePage extends WelcomePageBase {
     private int count = 0;
 
 
-    public WelcomePage(WebDriver driver) {
+    public CatalogScreen(WebDriver driver) {
         super(driver);
     }
 
@@ -50,9 +51,9 @@ public class WelcomePage extends WelcomePageBase {
     }
 
     @Override
-    public FilterPageBase clickFilterButton() {
+    public FilterScreenBase clickFilterButton() {
         filterButton.click();
-        return initPage(getDriver(), FilterPageBase.class);
+        return initPage(getDriver(), FilterScreenBase.class);
     }
 
     @Override
@@ -61,16 +62,19 @@ public class WelcomePage extends WelcomePageBase {
     }
 
     @Override
-    public void changeProductView(String view) {
-        if (view.equalsIgnoreCase("grid")) {
-            if (count % 2 != 0) {
-                viewButton.click();
-                count++;
+    public void changeProductView(ProductViewOptions viewOptions) {
+        switch (viewOptions) {
+            case GRID: {
+                if (count % 2 != 0) {
+                    viewButton.click();
+                    count++;
+                }
             }
-        } else if (view.equalsIgnoreCase("layer")) {
-            if (count % 2 == 0) {
-                viewButton.click();
-                count++;
+            case LAYER: {
+                if (count % 2 == 0) {
+                    viewButton.click();
+                    count++;
+                }
             }
         }
     }
@@ -82,14 +86,14 @@ public class WelcomePage extends WelcomePageBase {
 
 
     @Override
-    public ProductPageBase clickProduct(String productName) {
-        product.format(productName).click();
-        return initPage(getDriver(), ProductPageBase.class);
+    public ProductScreenBase clickProduct(String productName) {
+        specificProductTitle.format(productName).click();
+        return initPage(getDriver(), ProductScreenBase.class);
     }
 
     @Override
     public boolean isClickProductButtonPresent() {
-        return product.isElementPresent();
+        return specificProductTitle.isElementPresent();
     }
 
     @Override

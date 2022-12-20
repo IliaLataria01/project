@@ -4,13 +4,18 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginScreenBase;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
-public class LoginPage extends LoginPageBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginScreenBase.class)
+public class LoginScreen extends LoginScreenBase {
+
+    private static final Logger LOGGER = LogManager.getLogger(LoginScreen.class);
+
 
     @FindBy(xpath = "name = 'test-Username'")
     @Predicate
@@ -26,7 +31,7 @@ public class LoginPage extends LoginPageBase {
     @Predicate
     private ExtendedWebElement loginButton;
 
-    public LoginPage(WebDriver driver) {
+    public LoginScreen(WebDriver driver) {
         super(driver);
     }
 
@@ -44,13 +49,20 @@ public class LoginPage extends LoginPageBase {
     }
 
     @Override
-    public WelcomePageBase clickLoginButton() {
+    public CatalogScreenBase clickLoginButton() {
         loginButton.click();
-        return initPage(getDriver(), WelcomePageBase.class);
+        return initPage(getDriver(), CatalogScreenBase.class);
     }
 
-    public void inputLogin(String userName) {
+
+    @Override
+    public void typeUserName(String userName) {
         userNameField.type(userName);
-        passwordField.type(R.TESTDATA.get("password"));
+    }
+
+
+    @Override
+    public void typePassword(String password) {
+        passwordField.type(password);
     }
 }

@@ -1,21 +1,16 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.FilterOptions;
 import org.openqa.selenium.WebDriver;
 
-public abstract class FilterPageBase extends AbstractPage {
+public abstract class FilterScreenBase extends AbstractPage {
 
-    public FilterPageBase(WebDriver driver) {
+    public FilterScreenBase(WebDriver driver) {
         super(driver);
     }
 
-    public abstract void filterAToZ();
-
-    public abstract void filterZToA();
-
-    public abstract void filterPriceLowerToHigh();
-
-    public abstract void filterPriceHighToLower();
+    public abstract void clickFilterOption(FilterOptions filterOptions);
 
     public abstract boolean isAToZButtonPresent();
 

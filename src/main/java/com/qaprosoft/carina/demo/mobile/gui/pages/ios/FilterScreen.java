@@ -3,14 +3,17 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.FilterOptions;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = FilterPageBase.class)
-public class FilterPage extends FilterPageBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = FilterScreenBase.class)
+public class FilterScreen extends FilterScreenBase {
+
+    private static final Logger LOGGER = LogManager.getLogger(FilterScreen.class);
 
 
     @FindBy(xpath = "label == 'Name (A to Z)'")
@@ -30,29 +33,26 @@ public class FilterPage extends FilterPageBase {
     private ExtendedWebElement fromHigherToLower;
 
 
-    public FilterPage(WebDriver driver) {
+    public FilterScreen(WebDriver driver) {
         super(driver);
     }
 
-
     @Override
-    public void filterAToZ() {
-        fromAToZ.click();
-    }
-
-    @Override
-    public void filterZToA() {
-        fromZToA.click();
-    }
-
-    @Override
-    public void filterPriceLowerToHigh() {
-        fromLowerToHigh.click();
-    }
-
-    @Override
-    public void filterPriceHighToLower() {
-        fromHigherToLower.click();
+    public void clickFilterOption(FilterOptions filterOptions) {
+        switch (filterOptions.getOption()) {
+            case "A to Z":
+                fromAToZ.click();
+                break;
+            case "Z to A":
+                fromZToA.click();
+                break;
+            case "Low to High":
+                fromLowerToHigh.click();
+                break;
+            case "High to Low":
+                fromHigherToLower.click();
+                break;
+        }
     }
 
     @Override

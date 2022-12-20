@@ -3,19 +3,21 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class LoginPageBase extends AbstractPage {
+public abstract class LoginScreenBase extends AbstractPage {
 
-    public LoginPageBase(WebDriver driver) {
+    public LoginScreenBase(WebDriver driver) {
         super(driver);
     }
 
-    public abstract WelcomePageBase clickLoginButton();
+    public abstract CatalogScreenBase clickLoginButton();
 
     public abstract boolean isUserNameFieldPresent();
 
     public abstract boolean isPasswordFieldPresent();
 
-    public abstract void inputLogin(String userName);
+    public abstract void typeUserName(String userName);
+
+    public abstract void typePassword(String password);
 
     public abstract boolean isLoginButtonPresent();
 }

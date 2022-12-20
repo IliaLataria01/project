@@ -3,15 +3,19 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class ProductPageBase extends AbstractPage {
-    public ProductPageBase(WebDriver driver) {
+public abstract class ProductScreenBase extends AbstractPage {
+    public ProductScreenBase(WebDriver driver) {
         super(driver);
     }
 
-    public abstract WelcomePageBase clickBackButton();
+    public abstract CatalogScreenBase clickBackButton();
 
     public abstract boolean isBackButtonPresent();
 
     public abstract void addToCart();
+
+    public abstract void clickCartButton();
+
+    public abstract boolean isClickCartButton();
 
 }

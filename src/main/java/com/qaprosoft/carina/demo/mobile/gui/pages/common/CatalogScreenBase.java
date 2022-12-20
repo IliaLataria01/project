@@ -1,24 +1,25 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.ProductViewOptions;
 import org.openqa.selenium.WebDriver;
 
-public abstract class WelcomePageBase extends AbstractPage {
-    public WelcomePageBase(WebDriver driver) {
+public abstract class CatalogScreenBase extends AbstractPage {
+    public CatalogScreenBase(WebDriver driver) {
         super(driver);
     }
 
     public abstract boolean isProductBarPresent();
 
-    public abstract FilterPageBase clickFilterButton();
+    public abstract FilterScreenBase clickFilterButton();
 
     public abstract boolean isFilterButtonPresent();
 
-    public abstract void changeProductView(String view);
+    public abstract void changeProductView(ProductViewOptions viewOptions);
 
     public abstract boolean isViewButtonPresent();
 
-    public abstract ProductPageBase clickProduct(String productName);
+    public abstract ProductScreenBase clickProduct(String productName);
 
     public abstract boolean isClickProductButtonPresent();
 
