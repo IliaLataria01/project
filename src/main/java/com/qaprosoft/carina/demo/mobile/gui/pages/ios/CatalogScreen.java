@@ -6,6 +6,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Pred
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MenuScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ProductScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.ProductViewOptions;
 import org.apache.logging.log4j.LogManager;
@@ -38,6 +39,10 @@ public class CatalogScreen extends CatalogScreenBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Cart\"`]")
     private ExtendedWebElement cartButton;
+
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Menu\"`]")
+    private ExtendedWebElement menuButton;
+
 
     private int count = 0;
 
@@ -99,6 +104,17 @@ public class CatalogScreen extends CatalogScreenBase {
     @Override
     public void clickCartButton() {
         cartButton.click();
+    }
+
+    @Override
+    public MenuScreenBase clickMenuButton() {
+        menuButton.click();
+        return initPage(getDriver(),MenuScreenBase.class);
+    }
+
+    @Override
+    public boolean isMenuClickButtonPresent() {
+        return menuButton.isElementPresent();
     }
 
 }

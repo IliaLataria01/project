@@ -23,7 +23,10 @@ public abstract class CatalogScreenBase extends AbstractPage {
 
     public abstract boolean isClickProductButtonPresent();
 
-
     public abstract void clickCartButton();
+
+    public abstract MenuScreenBase clickMenuButton();
+
+    public abstract boolean isMenuClickButtonPresent();
 
 }

@@ -1,11 +1,9 @@
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CartScreenBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterScreenBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.ProductScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.AuthService;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.FilterOptions;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.MenuOptions;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.ProductViewOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -98,6 +96,84 @@ public class MobileTest implements IAbstractTest {
         Assert.assertTrue(productScreen.isClickCartButton(),"Cart button is not present.");
         CartScreenBase cartScreen = productScreen.clickCartButton();
         Assert.assertTrue(cartScreen.isProductPresent(R.TESTDATA.get("first_product")));
+    }
+
+
+    // Works
+    @Test
+    public void menuTest() {
+        AuthService authService = new AuthService();
+        CatalogScreenBase catalogScreen = authService.login();
+        Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
+        MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
+        for (MenuOptions x : MenuOptions.values()) {
+            Assert.assertTrue(menuScreen.checkMenuOption(x),"Options is not present.");
+        }
+        Assert.assertTrue(menuScreen.isCloseButtonPresent(),"Close button is not present.");
+        menuScreen.clickCloseButton();
+        Assert.assertTrue(catalogScreen.isProductBarPresent(), "Product Bar is not present.");
+    }
+
+    // Works
+    @Test
+    public void logOutTest() {
+        AuthService authService = new AuthService();
+        CatalogScreenBase catalogScreen = authService.login();
+        Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
+        MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
+        Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.LOGOUT),"Log out option is present.");
+        LoginScreenBase loginScreenBase = menuScreen.clickLogOutButton();
+        Assert.assertTrue(loginScreenBase.isLoginButtonPresent(),"Login button is not present. ");
+    }
+
+    // Works
+    @Test
+    public void webViewTest() throws InterruptedException {
+        AuthService authService = new AuthService();
+        CatalogScreenBase catalogScreen = authService.login();
+        Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
+        MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
+        Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.WEBVIEW),"Web view option is not present.");
+        WebViewScreenBase webViewScreen = menuScreen.clickWebViewButton();
+        Assert.assertTrue(webViewScreen.isURLFieldPresent(),"URL field is not present.");
+        webViewScreen.typeURL(R.TESTDATA.get("url"));
+        Assert.assertTrue(webViewScreen.isGoToButtonPresent(),"Go to site button is not present.");
+        webViewScreen.clickGoToSiteButton();
+        Thread.sleep(5000);
+    }
+
+    // Works (But When I find drawing functionality will modify it)
+    @Test
+    public void signatureTest() {
+        AuthService authService = new AuthService();
+        CatalogScreenBase catalogScreen = authService.login();
+        Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
+        MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
+
+        Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.DRAWING),"Drawing option is not present.");
+        DrawScreenBase drawScreen = menuScreen.clickDrawingButton();
+
+        Assert.assertTrue(drawScreen.isSaveButtonPresent(),"Save button is not present.");
+        drawScreen.clickSaveButton();
+
+        menuScreen = catalogScreen.clickMenuButton();
+        Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.ALLITEMS),"All items options is not present.");
+        catalogScreen = menuScreen.clickAllItemsButton();
+        Assert.assertTrue(catalogScreen.isProductBarPresent(),"Product bar is not present.");
+    }
+
+    // Still in progress
+    @Test
+    public void locationTest() {
+        AuthService authService = new AuthService();
+        CatalogScreenBase catalogScreen = authService.login();
+        Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
+        MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
+
+        Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.GEOLOCATION),"Location Option is not present.");
+        LocationScreenBase locationScreen = menuScreen.clickLocationButton();
+
+
 
     }
 }
