@@ -1,5 +1,6 @@
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.CartScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ProductScreenBase;
@@ -91,14 +92,12 @@ public class MobileTest implements IAbstractTest {
     public void checkCartTest() {
         AuthService authService = new AuthService();
         CatalogScreenBase welcomeScreen = authService.login();
-
-        ProductScreenBase productScreen = welcomeScreen.clickProduct(R.TESTDATA.get("third_product"));
+        ProductScreenBase productScreen = welcomeScreen.clickProduct(R.TESTDATA.get("first_product"));
         Assert.assertTrue(productScreen.isBackButtonPresent(), "Back button is not present.");
         productScreen.addToCart();
         Assert.assertTrue(productScreen.isClickCartButton(),"Cart button is not present.");
-        productScreen.clickCartButton();
-//        Assert.assertTrue(productScreen.isBackButtonPresent(), "Back button is not present.");
-//        welcomeScreen = productScreen.clickBackButton();
-//        Assert.assertTrue(welcomeScreen.isProductBarPresent(), "Product Bar is not present.");
+        CartScreenBase cartScreen = productScreen.clickCartButton();
+        Assert.assertTrue(cartScreen.isProductPresent(R.TESTDATA.get("first_product")));
+
     }
 }

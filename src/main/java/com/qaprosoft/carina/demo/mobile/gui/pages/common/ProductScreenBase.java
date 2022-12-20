@@ -14,7 +14,7 @@ public abstract class ProductScreenBase extends AbstractPage {
 
     public abstract void addToCart();
 
-    public abstract void clickCartButton();
+    public abstract CartScreenBase clickCartButton();
 
     public abstract boolean isClickCartButton();
 

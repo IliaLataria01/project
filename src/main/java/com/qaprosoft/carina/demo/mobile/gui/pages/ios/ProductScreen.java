@@ -2,14 +2,13 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.CartScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ProductScreenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductScreenBase.class)
 public class ProductScreen extends ProductScreenBase {
@@ -22,7 +21,7 @@ public class ProductScreen extends ProductScreenBase {
     @ExtendedFindBy(iosPredicate = "label == \"ADD TO CART\" AND name == \"test-ADD TO CART\"")
     private ExtendedWebElement addToCart;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == 'test-Cart'`]")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Cart\"`]/XCUIElementTypeOther")
     private ExtendedWebElement cartButton;
 
     public ProductScreen(WebDriver driver) {
@@ -46,8 +45,9 @@ public class ProductScreen extends ProductScreenBase {
     }
 
     @Override
-    public void clickCartButton() {
+    public CartScreenBase clickCartButton() {
         cartButton.click();
+        return initPage(getDriver(),CartScreenBase.class);
     }
 
     @Override
