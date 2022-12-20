@@ -2,14 +2,13 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterScreenBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ProductScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.AuthService;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.FilterOptions;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.ProductViewOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,25 +17,16 @@ public class MobileTest implements IAbstractTest {
     // First Test Case (Works)
     @Test
     public void loginPageTest() {
-        LoginScreenBase loginPage = initPage(getDriver(), LoginScreenBase.class);
-        Assert.assertTrue(loginPage.isUserNameFieldPresent(), "UserName field is not present.");
-        Assert.assertTrue(loginPage.isPasswordFieldPresent(), "Password field is not present.");
-        loginPage.typeUserName(R.TESTDATA.get("user_first"));
-        loginPage.typePassword(R.TESTDATA.get("password"));
-        Assert.assertTrue(loginPage.isLoginButtonPresent(), "Login button is not present.");
-        CatalogScreenBase welcomeScreen = loginPage.clickLoginButton();
-        Assert.assertTrue(welcomeScreen.isProductBarPresent(), "Product bar is not present.");
+        AuthService authService = new AuthService();
+        CatalogScreenBase welcomeScreen = authService.login();
     }
 
 
     // Second Test Case (Works)
     @Test
     public void filterTest() {
-        LoginScreenBase loginPage = initPage(getDriver(), LoginScreenBase.class);
-        loginPage.typeUserName(R.TESTDATA.get("user_first"));
-        loginPage.typePassword(R.TESTDATA.get("password"));
-        CatalogScreenBase welcomeScreen = loginPage.clickLoginButton();
-        Assert.assertTrue(welcomeScreen.isProductBarPresent(), "Product bar is not present.");
+        AuthService authService = new AuthService();
+        CatalogScreenBase welcomeScreen = authService.login();
 
         Assert.assertTrue(welcomeScreen.isFilterButtonPresent(), "Filter Button is not present.");
         FilterScreenBase filterScreen = welcomeScreen.clickFilterButton();
@@ -61,11 +51,8 @@ public class MobileTest implements IAbstractTest {
     // Third Test Case (Works)
     @Test
     public void productViewTest() {
-        LoginScreenBase loginPage = initPage(getDriver(), LoginScreenBase.class);
-        loginPage.typeUserName(R.TESTDATA.get("user_first"));
-        loginPage.typePassword(R.TESTDATA.get("password"));
-        CatalogScreenBase welcomeScreen = loginPage.clickLoginButton();
-        Assert.assertTrue(welcomeScreen.isProductBarPresent(), "Product bar is not present.");
+        AuthService authService = new AuthService();
+        CatalogScreenBase welcomeScreen = authService.login();
 
         Assert.assertTrue(welcomeScreen.isViewButtonPresent(), "View button is not present.");
         for (int i = 0; i < 10; i++) {
@@ -81,10 +68,8 @@ public class MobileTest implements IAbstractTest {
 
     @Test
     public void productTest() {
-        LoginScreenBase loginPage = initPage(getDriver(), LoginScreenBase.class);
-        loginPage.typeUserName(R.TESTDATA.get("user_first"));
-        loginPage.typePassword(R.TESTDATA.get("password"));
-        CatalogScreenBase welcomeScreen = loginPage.clickLoginButton();
+        AuthService authService = new AuthService();
+        CatalogScreenBase welcomeScreen = authService.login();
 
         Set<String> stringSet = new HashSet<>();
         stringSet.add("Sauce Labs Backpack");
@@ -104,10 +89,8 @@ public class MobileTest implements IAbstractTest {
 
     @Test
     public void checkCartTest() {
-        LoginScreenBase loginPage = initPage(getDriver(), LoginScreenBase.class);
-        loginPage.typeUserName(R.TESTDATA.get("user_first"));
-        loginPage.typePassword(R.TESTDATA.get("password"));
-        CatalogScreenBase welcomeScreen = loginPage.clickLoginButton();
+        AuthService authService = new AuthService();
+        CatalogScreenBase welcomeScreen = authService.login();
 
         ProductScreenBase productScreen = welcomeScreen.clickProduct(R.TESTDATA.get("third_product"));
         Assert.assertTrue(productScreen.isBackButtonPresent(), "Back button is not present.");
