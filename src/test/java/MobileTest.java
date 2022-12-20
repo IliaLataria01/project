@@ -162,7 +162,7 @@ public class MobileTest implements IAbstractTest {
         Assert.assertTrue(catalogScreen.isProductBarPresent(),"Product bar is not present.");
     }
 
-    // Still in progress
+    // Works
     @Test
     public void locationTest() {
         AuthService authService = new AuthService();
@@ -172,6 +172,11 @@ public class MobileTest implements IAbstractTest {
 
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.GEOLOCATION),"Location Option is not present.");
         LocationScreenBase locationScreen = menuScreen.clickLocationButton();
+
+        Assert.assertTrue(locationScreen.isAllowButtonPresent(),"Allow button is not present.");
+        locationScreen.clickAllowButton();
+
+        Assert.assertTrue(locationScreen.isLocationBarPresent(),"Location bar is not present.");
 
 
 
