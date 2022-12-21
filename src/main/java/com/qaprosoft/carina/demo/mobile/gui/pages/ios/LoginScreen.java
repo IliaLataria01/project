@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginScreenBase;
 import org.apache.logging.log4j.LogManager;
@@ -17,18 +18,15 @@ public class LoginScreen extends LoginScreenBase {
     private static final Logger LOGGER = LogManager.getLogger(LoginScreen.class);
 
 
-    @FindBy(xpath = "name = 'test-Username'")
-    @Predicate
+    @ExtendedFindBy(iosPredicate = "name = 'test-Username'")
     private ExtendedWebElement userNameField;
 
 
-    @FindBy(xpath = "name = 'test-Password'")
-    @Predicate
+    @ExtendedFindBy(iosPredicate = "name = 'test-Password'")
     private ExtendedWebElement passwordField;
 
 
-    @FindBy(xpath = "label == 'LOGIN' AND name == 'test-LOGIN'")
-    @Predicate
+    @ExtendedFindBy(iosPredicate = "label == 'LOGIN' AND name == 'test-LOGIN'")
     private ExtendedWebElement loginButton;
 
     public LoginScreen(WebDriver driver) {

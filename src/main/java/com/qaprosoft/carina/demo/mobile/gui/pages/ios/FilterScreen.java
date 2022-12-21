@@ -3,8 +3,9 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterScreenBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.utils.FilterOptions;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.FilterOption;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -15,21 +16,16 @@ public class FilterScreen extends FilterScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(FilterScreen.class);
 
-
-    @FindBy(xpath = "label == 'Name (A to Z)'")
-    @Predicate
+    @ExtendedFindBy(iosPredicate = "label == 'Name (A to Z)'")
     public ExtendedWebElement fromAToZ;
 
-    @FindBy(xpath = "label == 'Name (Z to A)'")
-    @Predicate
+    @ExtendedFindBy(iosPredicate = "label == 'Name (Z to A)'")
     private ExtendedWebElement fromZToA;
 
-    @FindBy(xpath = "label == 'Price (low to high)'")
-    @Predicate
+    @ExtendedFindBy(iosPredicate = "label == 'Price (low to high)'")
     private ExtendedWebElement fromLowerToHigh;
 
-    @FindBy(xpath = "label == 'Horizontal scroll bar, 2 pages'")
-    @Predicate
+    @ExtendedFindBy(iosPredicate = "label == 'Horizontal scroll bar, 2 pages'")
     private ExtendedWebElement fromHigherToLower;
 
 
@@ -38,7 +34,7 @@ public class FilterScreen extends FilterScreenBase {
     }
 
     @Override
-    public void clickFilterOption(FilterOptions filterOptions) {
+    public void clickFilterOption(FilterOption filterOptions) {
         switch (filterOptions.getOption()) {
             case "A to Z":
                 fromAToZ.click();
@@ -56,22 +52,17 @@ public class FilterScreen extends FilterScreenBase {
     }
 
     @Override
-    public boolean isAToZButtonPresent() {
-        return fromAToZ.isElementPresent();
-    }
-
-    @Override
-    public boolean isZToAButtonPresent() {
-        return fromZToA.isElementPresent();
-    }
-
-    @Override
-    public boolean isPriceLowerToHighButtonPresent() {
-        return fromLowerToHigh.isElementPresent();
-    }
-
-    @Override
-    public boolean isPriceHigherToLowerButtonPresent() {
-        return fromHigherToLower.isElementPresent();
+    public boolean isFilterPresent(FilterOption filterOption) {
+        switch (filterOption) {
+            case FROMATOZ:
+                return fromAToZ.isElementPresent();
+            case FROMZTOA:
+                return fromZToA.isElementPresent();
+            case FROMLOWERTOHIGH:
+                return fromLowerToHigh.isElementPresent();
+            case FROMHIGHERTOLOWER:
+                return fromHigherToLower.isElementPresent();
+        }
+        return false;
     }
 }

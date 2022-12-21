@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.MenuOptions;
 import org.openqa.selenium.WebDriver;
@@ -37,45 +38,9 @@ public class MenuScreen extends MenuScreenBase {
     }
 
     @Override
-    public LoginScreenBase clickLogOutButton() {
-        menuOption.format(MenuOptions.LOGOUT.getOption()).click();
-        return initPage(getDriver(), LoginScreenBase.class);
-    }
-
-    @Override
-    public WebViewScreenBase clickWebViewButton() {
-        menuOption.format(MenuOptions.WEBVIEW.getOption()).click();
-        return initPage(getDriver(),WebViewScreenBase.class);
-    }
-
-    @Override
-    public DrawScreenBase clickDrawingButton() {
-        menuOption.format(MenuOptions.DRAWING.getOption()).click();
-        return initPage(getDriver(), DrawScreenBase.class);
-    }
-
-    @Override
-    public CatalogScreenBase clickAllItemsButton() {
-        menuOption.format(MenuOptions.ALLITEMS.getOption()).click();
-        return initPage(getDriver(),CatalogScreenBase.class);
-    }
-
-    @Override
-    public LocationScreenBase clickLocationButton() {
-        menuOption.format(MenuOptions.GEOLOCATION.getOption()).click();
-        return initPage(getDriver(), LocationScreenBase.class);
-    }
-
-    @Override
-    public ScannerScreenBase clickScannerButton() {
-        menuOption.format(MenuOptions.QRCODESCANNER.getOption()).click();
-        return initPage(getDriver(),ScannerScreenBase.class);
-    }
-
-    @Override
-    public AboutScreenBase clickAboutButton() {
-        menuOption.format(MenuOptions.ABOUT.getOption()).click();
-        return initPage(getDriver(),AboutScreenBase.class);
+    public AbstractPage clickMenuOption(MenuOptions option) {
+        menuOption.format(option.getOption()).click();
+        return initPage(getDriver(),option.getaClass());
     }
 
 

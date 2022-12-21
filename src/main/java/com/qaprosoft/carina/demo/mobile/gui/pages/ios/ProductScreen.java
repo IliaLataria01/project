@@ -40,7 +40,7 @@ public class ProductScreen extends ProductScreenBase {
     }
 
     @Override
-    public void addToCart() {
+    public void clickAddToCartButton() {
         addToCart.click();
     }
 
@@ -51,7 +51,7 @@ public class ProductScreen extends ProductScreenBase {
     }
 
     @Override
-    public boolean isClickCartButton() {
+    public boolean isCartButtonPresent() {
         return cartButton.isElementPresent();
     }
 

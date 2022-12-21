@@ -18,24 +18,17 @@ import org.openqa.selenium.support.FindBy;
 public class CatalogScreen extends CatalogScreenBase {
     private static final Logger LOGGER = LogManager.getLogger(CatalogScreen.class);
 
-
-    @FindBy(xpath = "label == 'PRODUCTS' AND name == 'PRODUCTS' AND type == 'XCUIElementTypeOther'")
-    @Predicate
+    @ExtendedFindBy(iosPredicate = "label == 'PRODUCTS' AND name == 'PRODUCTS' AND type == 'XCUIElementTypeOther'")
     private ExtendedWebElement productBar;
-
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == 'test-Modal Selector Button'`]")
     private ExtendedWebElement filterButton;
 
-
-    @FindBy(xpath = "name == 'test-Toggle'")
-    @Predicate
+    @ExtendedFindBy(iosPredicate = "name == 'test-Toggle'")
     private ExtendedWebElement viewButton;
-
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == '%s'`]")
     private ExtendedWebElement specificProductTitle;
-
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Cart\"`]")
     private ExtendedWebElement cartButton;
@@ -70,6 +63,27 @@ public class CatalogScreen extends CatalogScreenBase {
     }
 
     @Override
+    public boolean isViewButtonPresent() {
+        return viewButton.isElementPresent();
+    }
+
+    @Override
+    public boolean isClickProductButtonPresent() {
+        return specificProductTitle.isElementPresent();
+    }
+
+    @Override
+    public boolean isMenuClickButtonPresent() {
+        return menuButton.isElementPresent();
+    }
+
+    @Override
+    public boolean isRemovalButtonPresent(String productName) {
+        return removeButton.format(productName).isElementPresent();
+    }
+
+
+    @Override
     public void changeProductView(ProductViewOptions viewOptions) {
         switch (viewOptions) {
             case GRID: {
@@ -88,20 +102,9 @@ public class CatalogScreen extends CatalogScreenBase {
     }
 
     @Override
-    public boolean isViewButtonPresent() {
-        return viewButton.isElementPresent();
-    }
-
-
-    @Override
     public ProductScreenBase clickProduct(String productName) {
         specificProductTitle.format(productName).click();
         return initPage(getDriver(), ProductScreenBase.class);
-    }
-
-    @Override
-    public boolean isClickProductButtonPresent() {
-        return specificProductTitle.isElementPresent();
     }
 
     @Override
@@ -112,12 +115,7 @@ public class CatalogScreen extends CatalogScreenBase {
     @Override
     public MenuScreenBase clickMenuButton() {
         menuButton.click();
-        return initPage(getDriver(),MenuScreenBase.class);
-    }
-
-    @Override
-    public boolean isMenuClickButtonPresent() {
-        return menuButton.isElementPresent();
+        return initPage(getDriver(), MenuScreenBase.class);
     }
 
     @Override
@@ -125,9 +123,5 @@ public class CatalogScreen extends CatalogScreenBase {
         removeButton.format(productName).click();
     }
 
-    @Override
-    public boolean isRemovalButtonPresent(String productName) {
-        return removeButton.format(productName).isElementPresent();
-    }
 
 }

@@ -32,12 +32,6 @@ public class CartScreen extends CartScreenBase {
     }
 
     @Override
-    public CheckoutScreenBase clickCheckoutButton() {
-        checkoutButton.click();
-        return initPage(getDriver(),CheckoutScreenBase.class);
-    }
-
-    @Override
     public boolean isCheckoutButtonPresent() {
         return checkoutButton.isElementPresent();
     }
@@ -48,8 +42,14 @@ public class CartScreen extends CartScreenBase {
     }
 
     @Override
+    public CheckoutScreenBase clickCheckoutButton() {
+        checkoutButton.click();
+        return initPage(getDriver(), CheckoutScreenBase.class);
+    }
+
+    @Override
     public CatalogScreenBase clickContinueShoppingButton() {
         continueShoppingButton.click();
-        return initPage(getDriver(),CatalogScreenBase.class);
+        return initPage(getDriver(), CatalogScreenBase.class);
     }
 }

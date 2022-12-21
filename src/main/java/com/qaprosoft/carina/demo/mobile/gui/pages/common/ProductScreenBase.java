@@ -12,10 +12,10 @@ public abstract class ProductScreenBase extends AbstractPage {
 
     public abstract boolean isBackButtonPresent();
 
-    public abstract void addToCart();
+    public abstract void clickAddToCartButton();
 
     public abstract CartScreenBase clickCartButton();
 
-    public abstract boolean isClickCartButton();
+    public abstract boolean isCartButtonPresent();
 
 }

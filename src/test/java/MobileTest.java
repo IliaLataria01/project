@@ -2,57 +2,60 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.*;
-import org.checkerframework.checker.units.qual.A;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class MobileTest implements IAbstractTest {
+public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
 
-    // First Test Case (Works)
+    // Works
     @Test
     public void loginPageTest() {
-        AuthService authService = new AuthService();
-        CatalogScreenBase welcomeScreen = authService.login();
-    }
-
-
-    // Second Test Case (Works)
-    @Test
-    public void filterTest() {
-        AuthService authService = new AuthService();
-        CatalogScreenBase welcomeScreen = authService.login();
-
-        Assert.assertTrue(welcomeScreen.isFilterButtonPresent(), "Filter Button is not present.");
-        FilterScreenBase filterScreen = welcomeScreen.clickFilterButton();
-        Assert.assertTrue(filterScreen.isAToZButtonPresent(), "A to Z button is not present.");
-        filterScreen.clickFilterOption(FilterOptions.FROMATOZ);
-
-        filterScreen = welcomeScreen.clickFilterButton();
-        Assert.assertTrue(filterScreen.isZToAButtonPresent(), "Z to A button is not present.");
-        filterScreen.clickFilterOption(FilterOptions.FROMZTOA);
-
-        filterScreen = welcomeScreen.clickFilterButton();
-        Assert.assertTrue(filterScreen.isPriceLowerToHighButtonPresent(), "Lower to High button is not present.");
-        filterScreen.clickFilterOption(FilterOptions.FROMLOWERTOHIGH);
-
-        filterScreen = welcomeScreen.clickFilterButton();
-        Assert.assertTrue(filterScreen.isPriceHigherToLowerButtonPresent(), "Higher to Lower button is not present.");
-        filterScreen.clickFilterOption(FilterOptions.FROMHIGHERTOLOWER);
+        LoginScreenBase loginPage = initPage(getDriver(), LoginScreenBase.class);
+        Assert.assertTrue(loginPage.isUserNameFieldPresent(), "UserName field is not present.");
+        Assert.assertTrue(loginPage.isPasswordFieldPresent(), "Password field is not present.");
+        loginPage.typeUserName(R.TESTDATA.get("user_first"));
+        loginPage.typePassword(R.TESTDATA.get("password"));
+        Assert.assertTrue(loginPage.isLoginButtonPresent(), "Login button is not present.");
+        CatalogScreenBase welcomeScreen = loginPage.clickLoginButton();
         Assert.assertTrue(welcomeScreen.isProductBarPresent(), "Product bar is not present.");
     }
 
 
-    // Third Test Case (Works)
+    // Works
+    @Test
+    public void filterTest() {
+        CatalogScreenBase welcomeScreen = authService.login();
+
+        Assert.assertTrue(welcomeScreen.isFilterButtonPresent(), "Filter Button is not present.");
+        FilterScreenBase filterScreen = welcomeScreen.clickFilterButton();
+        Assert.assertTrue(filterScreen.isFilterPresent(FilterOption.FROMATOZ), "A to Z button is not present.");
+        filterScreen.clickFilterOption(FilterOption.FROMATOZ);
+
+        filterScreen = welcomeScreen.clickFilterButton();
+        Assert.assertTrue(filterScreen.isFilterPresent(FilterOption.FROMZTOA), "Z to A button is not present.");
+        filterScreen.clickFilterOption(FilterOption.FROMZTOA);
+
+        filterScreen = welcomeScreen.clickFilterButton();
+        Assert.assertTrue(filterScreen.isFilterPresent(FilterOption.FROMLOWERTOHIGH), "Lower to High button is not present.");
+        filterScreen.clickFilterOption(FilterOption.FROMLOWERTOHIGH);
+
+        filterScreen = welcomeScreen.clickFilterButton();
+        Assert.assertTrue(filterScreen.isFilterPresent(FilterOption.FROMHIGHERTOLOWER), "Higher to Lower button is not present.");
+        filterScreen.clickFilterOption(FilterOption.FROMHIGHERTOLOWER);
+        Assert.assertTrue(welcomeScreen.isProductBarPresent(), "Product bar is not present.");
+    }
+
+
+    // Works
     @Test
     public void productViewTest() {
-        AuthService authService = new AuthService();
         CatalogScreenBase welcomeScreen = authService.login();
 
         Assert.assertTrue(welcomeScreen.isViewButtonPresent(), "View button is not present.");
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             if (i % 2 == 0) {
                 welcomeScreen.changeProductView(ProductViewOptions.GRID);
             } else {
@@ -62,10 +65,9 @@ public class MobileTest implements IAbstractTest {
         Assert.assertTrue(welcomeScreen.isProductBarPresent(), "Product bar is not present.");
     }
 
-
+    // Works
     @Test
     public void productTest() {
-        AuthService authService = new AuthService();
         CatalogScreenBase welcomeScreen = authService.login();
 
         Set<String> stringSet = new HashSet<>();
@@ -84,17 +86,23 @@ public class MobileTest implements IAbstractTest {
 
     }
 
+    // Works
     @Test
     public void checkCartTest() {
-        CartAdditionService cartAdditionService = new CartAdditionService();
-        cartAdditionService.addProduct(R.TESTDATA.get("first_product"));
+        AuthService authService = new AuthService();
+        CatalogScreenBase welcomeScreen = authService.login();
+        ProductScreenBase productScreen = welcomeScreen.clickProduct(R.TESTDATA.get("first_product"));
+        Assert.assertTrue(productScreen.isBackButtonPresent(), "Back button is not present.");
+        productScreen.clickAddToCartButton();
+        Assert.assertTrue(productScreen.isCartButtonPresent(),"Cart button is not present.");
+        CartScreenBase cartScreen = productScreen.clickCartButton();
+        Assert.assertTrue(cartScreen.isProductPresent(R.TESTDATA.get("first_product")));
     }
 
 
     // Works
     @Test
     public void menuTest() {
-        AuthService authService = new AuthService();
         CatalogScreenBase catalogScreen = authService.login();
         Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
         MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
@@ -109,22 +117,20 @@ public class MobileTest implements IAbstractTest {
     // Works
     @Test
     public void logOutTest() {
-        MenuService menuService = new MenuService();
         MenuScreenBase menuScreen = menuService.menuService();
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.LOGOUT),"Log out option is present.");
-        LoginScreenBase loginScreenBase = menuScreen.clickLogOutButton();
+        LoginScreenBase loginScreenBase = (LoginScreenBase) menuScreen.clickMenuOption(MenuOptions.LOGOUT);
         Assert.assertTrue(loginScreenBase.isLoginButtonPresent(),"Login button is not present. ");
     }
 
     // Works
     @Test
     public void webViewTest() throws InterruptedException {
-        AuthService authService = new AuthService();
         CatalogScreenBase catalogScreen = authService.login();
         Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
         MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.WEBVIEW),"Web view option is not present.");
-        WebViewScreenBase webViewScreen = menuScreen.clickWebViewButton();
+        WebViewScreenBase webViewScreen = (WebViewScreenBase) menuScreen.clickMenuOption(MenuOptions.WEBVIEW);
         Assert.assertTrue(webViewScreen.isURLFieldPresent(),"URL field is not present.");
         webViewScreen.typeURL(R.TESTDATA.get("url"));
         Assert.assertTrue(webViewScreen.isGoToButtonPresent(),"Go to site button is not present.");
@@ -135,31 +141,29 @@ public class MobileTest implements IAbstractTest {
     // Works (But When I find drawing functionality will modify it)
     @Test
     public void signatureTest() {
-        AuthService authService = new AuthService();
         CatalogScreenBase catalogScreen = authService.login();
         Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
         MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
 
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.DRAWING),"Drawing option is not present.");
-        DrawScreenBase drawScreen = menuScreen.clickDrawingButton();
+        DrawScreenBase drawScreen = (DrawScreenBase) menuScreen.clickMenuOption(MenuOptions.DRAWING);
 
         Assert.assertTrue(drawScreen.isSaveButtonPresent(),"Save button is not present.");
         drawScreen.clickSaveButton();
 
         menuScreen = catalogScreen.clickMenuButton();
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.ALLITEMS),"All items options is not present.");
-        catalogScreen = menuScreen.clickAllItemsButton();
+        catalogScreen = (CatalogScreenBase) menuScreen.clickMenuOption(MenuOptions.ALLITEMS);
         Assert.assertTrue(catalogScreen.isProductBarPresent(),"Product bar is not present.");
     }
 
     // Works
     @Test
     public void locationTest() {
-        MenuService menuService = new MenuService();
         MenuScreenBase menuScreen = menuService.menuService();
 
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.GEOLOCATION),"Location Option is not present.");
-        LocationScreenBase locationScreen = menuScreen.clickLocationButton();
+        LocationScreenBase locationScreen = (LocationScreenBase) menuScreen.clickMenuOption(MenuOptions.GEOLOCATION);
 
         Assert.assertTrue(locationScreen.isAllowButtonPresent(),"Allow button is not present.");
         locationScreen.clickAllowButton();
@@ -170,7 +174,6 @@ public class MobileTest implements IAbstractTest {
     // Works
     @Test
     public void checkOutTest() {
-        CartAdditionService cartAdditionService = new CartAdditionService();
         CartScreenBase cartScreen = cartAdditionService.addProduct(R.TESTDATA.get("first_product"));
 
         Assert.assertTrue(cartScreen.isCheckoutButtonPresent(),"Checkout button is not present.");
@@ -191,9 +194,10 @@ public class MobileTest implements IAbstractTest {
         Assert.assertTrue(catalogScreen.isProductBarPresent(),"Product bar is not present.");
     }
 
+
+    // Works
     @Test
-    public void removalTest() {
-        CartAdditionService cartAdditionService = new CartAdditionService();
+    public void removeItemFromCartTest() {
         CartScreenBase cartScreen = cartAdditionService.addProduct(R.TESTDATA.get("first_product"));
 
         Assert.assertTrue(cartScreen.isContinueShoppingButtonPresent(),"Continue shopping button is not present.");
@@ -203,33 +207,34 @@ public class MobileTest implements IAbstractTest {
         Assert.assertTrue(catalogScreen.isProductBarPresent(),"Product bar is not present.");
     }
 
+
+    // Works
     @Test
     public void scannerTest() {
-        MenuService menuService = new MenuService();
         MenuScreenBase menuScreen = menuService.menuService();
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.QRCODESCANNER),"QR option is not present.");
-        ScannerScreenBase scannerScreen = menuScreen.clickScannerButton();
+        ScannerScreenBase scannerScreen = (ScannerScreenBase) menuScreen.clickMenuOption(MenuOptions.QRCODESCANNER);
 
         Assert.assertTrue(scannerScreen.isOkButtonPresent(),"Ok button is not present.");
         scannerScreen.clickOkButton();
         Assert.assertTrue(scannerScreen.isQRCodeRepresentationPresent(),"QR code representation is not present.");
     }
 
+    // Works
     @Test
     public void aboutTest() {
-        MenuService menuService = new MenuService();
         MenuScreenBase menuScreen = menuService.menuService();
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.ABOUT),"About option is not present.");
-        AboutScreenBase aboutScreen = menuScreen.clickAboutButton();
+        AboutScreenBase aboutScreen = (AboutScreenBase) menuScreen.clickMenuOption(MenuOptions.ABOUT);
         Assert.assertTrue(aboutScreen.isHomeButtonPresent(),"Home button is not present.");
         Assert.assertTrue(aboutScreen.isMenuButtonPresent(),"Menu button is not present.");
     }
 
+    // Works
     @Test
     public void aboutScreenMenuTest() {
-        MenuService menuService = new MenuService();
         MenuScreenBase menuScreen = menuService.menuService();
-        AboutScreenBase aboutScreen = menuScreen.clickAboutButton();
+        AboutScreenBase aboutScreen = (AboutScreenBase) menuScreen.clickMenuOption(MenuOptions.ABOUT);
         Assert.assertTrue(aboutScreen.isMenuButtonPresent(),"Menu button is not present.");
         MenuAboutScreenBase menuAboutScreen = aboutScreen.clickMenuButton();
         Assert.assertTrue(menuAboutScreen.isCloseButtonPresent(),"Close button is not present.");
