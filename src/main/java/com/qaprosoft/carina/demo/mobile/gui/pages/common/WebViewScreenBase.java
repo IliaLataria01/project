@@ -12,7 +12,7 @@ public abstract class WebViewScreenBase extends AbstractPage {
 
     public abstract void typeURL(String url);
 
-    public abstract void clickGoToSiteButton();
+    public abstract RandomScreenBase clickGoToSiteButton();
 
     public abstract boolean isGoToButtonPresent();
 

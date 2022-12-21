@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MenuScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.RandomScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewScreenBase;
 import org.openqa.selenium.WebDriver;
 
@@ -33,8 +34,9 @@ public class WebViewScreen extends WebViewScreenBase {
     }
 
     @Override
-    public void clickGoToSiteButton() {
+    public RandomScreenBase clickGoToSiteButton() {
         goToButton.click();
+        return initPage(getDriver(),RandomScreenBase.class);
     }
 
     @Override

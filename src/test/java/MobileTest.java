@@ -53,12 +53,12 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
     @Test
     public void productViewTest() {
         CatalogScreenBase welcomeScreen = authService.login();
-
-        Assert.assertTrue(welcomeScreen.isViewButtonPresent(), "View button is not present.");
         for (int i = 0; i < 5; i++) {
             if (i % 2 == 0) {
+                Assert.assertTrue(welcomeScreen.isViewButtonPresent(), "View button with grid view is not present.");
                 welcomeScreen.changeProductView(ProductViewOptions.GRID);
             } else {
+                Assert.assertTrue(welcomeScreen.isViewButtonPresent(), "View button with layer view is not present.");
                 welcomeScreen.changeProductView(ProductViewOptions.LAYER);
             }
         }
@@ -125,7 +125,7 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
 
     // Works
     @Test
-    public void webViewTest() throws InterruptedException {
+    public void webViewTest()  {
         CatalogScreenBase catalogScreen = authService.login();
         Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
         MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
@@ -134,8 +134,8 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
         Assert.assertTrue(webViewScreen.isURLFieldPresent(),"URL field is not present.");
         webViewScreen.typeURL(R.TESTDATA.get("url"));
         Assert.assertTrue(webViewScreen.isGoToButtonPresent(),"Go to site button is not present.");
-        webViewScreen.clickGoToSiteButton();
-        Thread.sleep(5000);
+        RandomScreenBase randomScreen = webViewScreen.clickGoToSiteButton();
+        Assert.assertTrue(randomScreen.isLogoPresent(),"Page is not opened.");
     }
 
     // Works (But When I find drawing functionality will modify it)
