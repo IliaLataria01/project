@@ -36,7 +36,7 @@ public class WebViewScreen extends WebViewScreenBase {
     @Override
     public RandomScreenBase clickGoToSiteButton() {
         goToButton.click();
-        return initPage(getDriver(),RandomScreenBase.class);
+        return initPage(getDriver(), RandomScreenBase.class);
     }
 
     @Override

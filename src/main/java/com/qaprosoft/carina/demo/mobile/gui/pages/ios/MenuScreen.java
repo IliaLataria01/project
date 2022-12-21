@@ -40,7 +40,7 @@ public class MenuScreen extends MenuScreenBase {
     @Override
     public AbstractPage clickMenuOption(MenuOptions option) {
         menuOption.format(option.getOption()).click();
-        return initPage(getDriver(),option.getaClass());
+        return initPage(getDriver(), option.getaClass());
     }
 
 

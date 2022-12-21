@@ -3,14 +3,14 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.utils;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 
-public enum MenuOptions{
-    ALLITEMS("ALL ITEMS",CatalogScreenBase.class),
-    WEBVIEW("WEBVIEW",WebViewScreenBase.class),
+public enum MenuOptions {
+    ALLITEMS("ALL ITEMS", CatalogScreenBase.class),
+    WEBVIEW("WEBVIEW", WebViewScreenBase.class),
     QRCODESCANNER("QR CODE SCANNER", ScannerScreenBase.class),
     GEOLOCATION("GEO LOCATION", LocationScreenBase.class),
     DRAWING("DRAWING", DrawScreenBase.class),
-    ABOUT("ABOUT",AboutScreenBase.class),
-    LOGOUT("LOGOUT",LoginScreenBase.class),
+    ABOUT("ABOUT", AboutScreenBase.class),
+    LOGOUT("LOGOUT", LoginScreenBase.class),
     RESETAPPSTATE("RESET APP STATE");
 
     private String option;

@@ -33,6 +33,6 @@ public class AboutScreen extends AboutScreenBase {
     @Override
     public MenuAboutScreenBase clickMenuButton() {
         menuButton.click();
-        return initPage(getDriver(),MenuAboutScreenBase.class);
+        return initPage(getDriver(), MenuAboutScreenBase.class);
     }
 }

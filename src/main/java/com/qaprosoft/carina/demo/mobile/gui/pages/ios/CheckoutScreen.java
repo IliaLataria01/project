@@ -63,7 +63,7 @@ public class CheckoutScreen extends CheckoutScreenBase {
     @Override
     public ConfirmScreenBase clickContinueButton() {
         continueButton.click();
-        return initPage(getDriver(),ConfirmScreenBase.class);
+        return initPage(getDriver(), ConfirmScreenBase.class);
     }
 
     @Override

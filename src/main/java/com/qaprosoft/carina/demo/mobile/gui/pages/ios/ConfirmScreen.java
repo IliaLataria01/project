@@ -4,7 +4,6 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CheckoutScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ConfirmScreenBase;
 import org.openqa.selenium.WebDriver;
 
@@ -41,6 +40,6 @@ public class ConfirmScreen extends ConfirmScreenBase {
     @Override
     public CatalogScreenBase clickGoBackButton() {
         backHomeButton.click();
-        return initPage(getDriver(),CatalogScreenBase.class);
+        return initPage(getDriver(), CatalogScreenBase.class);
     }
 }

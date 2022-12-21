@@ -10,7 +10,7 @@ public class MenuService implements IAbstractTest {
     public MenuScreenBase menuService() {
         AuthService authService = new AuthService();
         CatalogScreenBase catalogScreen = authService.login();
-        Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
+        Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(), "Menu click button is not present");
         return catalogScreen.clickMenuButton();
     }
 }

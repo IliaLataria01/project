@@ -47,7 +47,7 @@ public class ProductScreen extends ProductScreenBase {
     @Override
     public CartScreenBase clickCartButton() {
         cartButton.click();
-        return initPage(getDriver(),CartScreenBase.class);
+        return initPage(getDriver(), CartScreenBase.class);
     }
 
     @Override

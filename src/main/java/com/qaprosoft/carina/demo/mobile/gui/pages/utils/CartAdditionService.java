@@ -14,7 +14,7 @@ public class CartAdditionService implements IAbstractTest {
         ProductScreenBase productScreen = welcomeScreen.clickProduct(productName);
         Assert.assertTrue(productScreen.isBackButtonPresent(), "Back button is not present.");
         productScreen.clickAddToCartButton();
-        Assert.assertTrue(productScreen.isCartButtonPresent(),"Cart button is not present.");
+        Assert.assertTrue(productScreen.isCartButtonPresent(), "Cart button is not present.");
         CartScreenBase cartScreen = productScreen.clickCartButton();
         Assert.assertTrue(cartScreen.isProductPresent(productName));
         return cartScreen;
