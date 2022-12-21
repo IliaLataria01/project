@@ -21,11 +21,12 @@ public abstract class MenuScreenBase extends AbstractPage {
 
     public abstract DrawScreenBase clickDrawingButton();
 
-
     public abstract CatalogScreenBase clickAllItemsButton();
 
     public abstract LocationScreenBase clickLocationButton();
 
     public abstract ScannerScreenBase clickScannerButton();
+
+    public abstract AboutScreenBase clickAboutButton();
 
 }

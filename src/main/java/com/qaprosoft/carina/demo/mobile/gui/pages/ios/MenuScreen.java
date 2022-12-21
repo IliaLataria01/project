@@ -72,5 +72,11 @@ public class MenuScreen extends MenuScreenBase {
         return initPage(getDriver(),ScannerScreenBase.class);
     }
 
+    @Override
+    public AboutScreenBase clickAboutButton() {
+        menuOption.format(MenuOptions.ABOUT.getOption()).click();
+        return initPage(getDriver(),AboutScreenBase.class);
+    }
+
 
 }

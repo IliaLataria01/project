@@ -214,4 +214,26 @@ public class MobileTest implements IAbstractTest {
         scannerScreen.clickOkButton();
         Assert.assertTrue(scannerScreen.isQRCodeRepresentationPresent(),"QR code representation is not present.");
     }
+
+    @Test
+    public void aboutTest() {
+        MenuService menuService = new MenuService();
+        MenuScreenBase menuScreen = menuService.menuService();
+        Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.ABOUT),"About option is not present.");
+        AboutScreenBase aboutScreen = menuScreen.clickAboutButton();
+        Assert.assertTrue(aboutScreen.isHomeButtonPresent(),"Home button is not present.");
+        Assert.assertTrue(aboutScreen.isMenuButtonPresent(),"Menu button is not present.");
+    }
+
+    @Test
+    public void aboutScreenMenuTest() {
+        MenuService menuService = new MenuService();
+        MenuScreenBase menuScreen = menuService.menuService();
+        AboutScreenBase aboutScreen = menuScreen.clickAboutButton();
+        Assert.assertTrue(aboutScreen.isMenuButtonPresent(),"Menu button is not present.");
+        MenuAboutScreenBase menuAboutScreen = aboutScreen.clickMenuButton();
+        Assert.assertTrue(menuAboutScreen.isCloseButtonPresent(),"Close button is not present.");
+        menuAboutScreen.clickCloseButton();
+        Assert.assertTrue(aboutScreen.isHomeButtonPresent(),"Home button is not present.");
+    }
 }
