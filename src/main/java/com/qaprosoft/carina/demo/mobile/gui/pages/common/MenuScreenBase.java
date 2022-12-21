@@ -26,4 +26,6 @@ public abstract class MenuScreenBase extends AbstractPage {
 
     public abstract LocationScreenBase clickLocationButton();
 
+    public abstract ScannerScreenBase clickScannerButton();
+
 }

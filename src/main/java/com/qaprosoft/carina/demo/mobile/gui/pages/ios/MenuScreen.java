@@ -66,5 +66,11 @@ public class MenuScreen extends MenuScreenBase {
         return initPage(getDriver(), LocationScreenBase.class);
     }
 
+    @Override
+    public ScannerScreenBase clickScannerButton() {
+        menuOption.format(MenuOptions.QRCODESCANNER.getOption()).click();
+        return initPage(getDriver(),ScannerScreenBase.class);
+    }
+
 
 }

@@ -2,6 +2,7 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.*;
+import org.checkerframework.checker.units.qual.A;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -108,10 +109,8 @@ public class MobileTest implements IAbstractTest {
     // Works
     @Test
     public void logOutTest() {
-        AuthService authService = new AuthService();
-        CatalogScreenBase catalogScreen = authService.login();
-        Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
-        MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
+        MenuService menuService = new MenuService();
+        MenuScreenBase menuScreen = menuService.menuService();
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.LOGOUT),"Log out option is present.");
         LoginScreenBase loginScreenBase = menuScreen.clickLogOutButton();
         Assert.assertTrue(loginScreenBase.isLoginButtonPresent(),"Login button is not present. ");
@@ -156,10 +155,8 @@ public class MobileTest implements IAbstractTest {
     // Works
     @Test
     public void locationTest() {
-        AuthService authService = new AuthService();
-        CatalogScreenBase catalogScreen = authService.login();
-        Assert.assertTrue(catalogScreen.isMenuClickButtonPresent(),"Menu click button is not present");
-        MenuScreenBase menuScreen = catalogScreen.clickMenuButton();
+        MenuService menuService = new MenuService();
+        MenuScreenBase menuScreen = menuService.menuService();
 
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.GEOLOCATION),"Location Option is not present.");
         LocationScreenBase locationScreen = menuScreen.clickLocationButton();
@@ -204,6 +201,17 @@ public class MobileTest implements IAbstractTest {
         Assert.assertTrue(catalogScreen.isRemovalButtonPresent(R.TESTDATA.get("first_product")));
         catalogScreen.clickRemovalButton(R.TESTDATA.get("first_product"));
         Assert.assertTrue(catalogScreen.isProductBarPresent(),"Product bar is not present.");
+    }
 
+    @Test
+    public void scannerTest() {
+        MenuService menuService = new MenuService();
+        MenuScreenBase menuScreen = menuService.menuService();
+        Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.QRCODESCANNER),"QR option is not present.");
+        ScannerScreenBase scannerScreen = menuScreen.clickScannerButton();
+
+        Assert.assertTrue(scannerScreen.isOkButtonPresent(),"Ok button is not present.");
+        scannerScreen.clickOkButton();
+        Assert.assertTrue(scannerScreen.isQRCodeRepresentationPresent(),"QR code representation is not present.");
     }
 }
