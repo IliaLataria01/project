@@ -44,6 +44,9 @@ public class CatalogScreen extends CatalogScreenBase {
     private ExtendedWebElement menuButton;
 
 
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label CONTAINS '%s'`][2]/**/XCUIElementTypeOther[`label == \"REMOVE\"`][1]")
+    private ExtendedWebElement removeButton;
+
     private int count = 0;
 
 
@@ -115,6 +118,16 @@ public class CatalogScreen extends CatalogScreenBase {
     @Override
     public boolean isMenuClickButtonPresent() {
         return menuButton.isElementPresent();
+    }
+
+    @Override
+    public void clickRemovalButton(String productName) {
+        removeButton.format(productName).click();
+    }
+
+    @Override
+    public boolean isRemovalButtonPresent(String productName) {
+        return removeButton.format(productName).isElementPresent();
     }
 
 }

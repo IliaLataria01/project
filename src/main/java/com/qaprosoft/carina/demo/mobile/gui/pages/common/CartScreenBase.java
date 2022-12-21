@@ -9,4 +9,12 @@ public abstract class CartScreenBase extends AbstractPage {
     }
 
     public abstract boolean isProductPresent(String productName);
+
+    public abstract CheckoutScreenBase clickCheckoutButton();
+
+    public abstract boolean isCheckoutButtonPresent();
+
+    public abstract boolean isContinueShoppingButtonPresent();
+
+    public abstract CatalogScreenBase clickContinueShoppingButton();
 }

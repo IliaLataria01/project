@@ -1,10 +1,7 @@
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
-import com.qaprosoft.carina.demo.mobile.gui.pages.utils.AuthService;
-import com.qaprosoft.carina.demo.mobile.gui.pages.utils.FilterOptions;
-import com.qaprosoft.carina.demo.mobile.gui.pages.utils.MenuOptions;
-import com.qaprosoft.carina.demo.mobile.gui.pages.utils.ProductViewOptions;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -88,14 +85,8 @@ public class MobileTest implements IAbstractTest {
 
     @Test
     public void checkCartTest() {
-        AuthService authService = new AuthService();
-        CatalogScreenBase welcomeScreen = authService.login();
-        ProductScreenBase productScreen = welcomeScreen.clickProduct(R.TESTDATA.get("first_product"));
-        Assert.assertTrue(productScreen.isBackButtonPresent(), "Back button is not present.");
-        productScreen.addToCart();
-        Assert.assertTrue(productScreen.isClickCartButton(),"Cart button is not present.");
-        CartScreenBase cartScreen = productScreen.clickCartButton();
-        Assert.assertTrue(cartScreen.isProductPresent(R.TESTDATA.get("first_product")));
+        CartAdditionService cartAdditionService = new CartAdditionService();
+        cartAdditionService.addProduct(R.TESTDATA.get("first_product"));
     }
 
 
@@ -177,8 +168,42 @@ public class MobileTest implements IAbstractTest {
         locationScreen.clickAllowButton();
 
         Assert.assertTrue(locationScreen.isLocationBarPresent(),"Location bar is not present.");
+    }
 
+    // Works
+    @Test
+    public void checkOutTest() {
+        CartAdditionService cartAdditionService = new CartAdditionService();
+        CartScreenBase cartScreen = cartAdditionService.addProduct(R.TESTDATA.get("first_product"));
 
+        Assert.assertTrue(cartScreen.isCheckoutButtonPresent(),"Checkout button is not present.");
+        CheckoutScreenBase checkoutScreen = cartScreen.clickCheckoutButton();
+
+        Assert.assertTrue(checkoutScreen.isFirstNameFieldPresent(),"First name field is not present.");
+        checkoutScreen.typeFirstName(R.TESTDATA.get("first_name"));
+        Assert.assertTrue(checkoutScreen.isLastNameFieldPresent(),"Last name field is not present.");
+        checkoutScreen.typeLastName(R.TESTDATA.get("last_name"));
+        Assert.assertTrue(checkoutScreen.isPostalCodeFieldPresent(),"Postal code field is not present.");
+        checkoutScreen.typePostalCode(R.TESTDATA.get("postal_code"));
+        Assert.assertTrue(checkoutScreen.isContinueButtonPresent(),"Continue button is not present.");
+
+        ConfirmScreenBase confirmScreen = checkoutScreen.clickContinueButton();
+        confirmScreen.clickFinishButton();
+        Assert.assertTrue(confirmScreen.isGoBackButtonPresent(),"Go back button is not present.");
+        CatalogScreenBase catalogScreen = confirmScreen.clickGoBackButton();
+        Assert.assertTrue(catalogScreen.isProductBarPresent(),"Product bar is not present.");
+    }
+
+    @Test
+    public void removalTest() {
+        CartAdditionService cartAdditionService = new CartAdditionService();
+        CartScreenBase cartScreen = cartAdditionService.addProduct(R.TESTDATA.get("first_product"));
+
+        Assert.assertTrue(cartScreen.isContinueShoppingButtonPresent(),"Continue shopping button is not present.");
+        CatalogScreenBase catalogScreen = cartScreen.clickContinueShoppingButton();
+        Assert.assertTrue(catalogScreen.isRemovalButtonPresent(R.TESTDATA.get("first_product")));
+        catalogScreen.clickRemovalButton(R.TESTDATA.get("first_product"));
+        Assert.assertTrue(catalogScreen.isProductBarPresent(),"Product bar is not present.");
 
     }
 }

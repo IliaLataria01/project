@@ -29,4 +29,8 @@ public abstract class CatalogScreenBase extends AbstractPage {
 
     public abstract boolean isMenuClickButtonPresent();
 
+    public abstract void clickRemovalButton(String productName);
+
+    public abstract boolean isRemovalButtonPresent(String productName);
+
 }
