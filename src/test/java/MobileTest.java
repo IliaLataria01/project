@@ -254,4 +254,6 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
         Assert.assertTrue(aboutScreen.isHomeButtonPresent(), "Home button is not present.");
 
     }
+
+    // Comment Added
 }
