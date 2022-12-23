@@ -119,9 +119,7 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
     // Works
     @Test
     public void logOutTest() {
-        MenuScreenBase menuScreen = menuService.menuService();
-        Assert.assertTrue(menuScreen.checkMenuOption(MenuOption.LOGOUT), "Log out option is present.");
-        LoginScreenBase loginScreenBase = (LoginScreenBase) menuScreen.clickMenuOption(MenuOption.LOGOUT);
+        LoginScreenBase loginScreenBase = (LoginScreenBase) menuService.open(MenuOption.LOGOUT);
         Assert.assertTrue(loginScreenBase.isLoginButtonPresent(), "Login button is not present. ");
     }
 
@@ -172,14 +170,9 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
     // Works
     @Test
     public void locationTest() {
-        MenuScreenBase menuScreen = menuService.menuService();
-
-        Assert.assertTrue(menuScreen.checkMenuOption(MenuOption.GEOLOCATION), "Location Option is not present.");
-        LocationPermissionsAlertBase locationPermissionsAlert = (LocationPermissionsAlertBase) menuScreen.clickMenuOption(MenuOption.GEOLOCATION);
-
+        LocationPermissionsAlertBase locationPermissionsAlert = (LocationPermissionsAlertBase) menuService.open(MenuOption.GEOLOCATION);
         Assert.assertTrue(locationPermissionsAlert.isAllowButtonPresent(), "Allow button is not present.");
         LocationScreenBase locationScreen = locationPermissionsAlert.clickAllowButton();
-
         Assert.assertTrue(locationScreen.isLocationBarPresent(), "Location bar is not present.");
     }
 
@@ -225,10 +218,7 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
     // Works
     @Test
     public void scannerTest() {
-        MenuScreenBase menuScreen = menuService.menuService();
-        Assert.assertTrue(menuScreen.checkMenuOption(MenuOption.QRCODESCANNER), "QR option is not present.");
-        ScannerScreenBase scannerScreen = (ScannerScreenBase) menuScreen.clickMenuOption(MenuOption.QRCODESCANNER);
-
+        ScannerScreenBase scannerScreen = (ScannerScreenBase) menuService.open(MenuOption.QRCODESCANNER);
         Assert.assertTrue(scannerScreen.isOkButtonPresent(), "Ok button is not present.");
         scannerScreen.clickOkButton();
         Assert.assertTrue(scannerScreen.isQRCodeRepresentationPresent(), "QR code representation is not present.");
@@ -237,9 +227,7 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
     // Works
     @Test
     public void aboutTest() {
-        MenuScreenBase menuScreen = menuService.menuService();
-        Assert.assertTrue(menuScreen.checkMenuOption(MenuOption.ABOUT), "About option is not present.");
-        AboutScreenBase aboutScreen = (AboutScreenBase) menuScreen.clickMenuOption(MenuOption.ABOUT);
+        AboutScreenBase aboutScreen = (AboutScreenBase) menuService.open(MenuOption.ABOUT);
         Assert.assertTrue(aboutScreen.isHomeButtonPresent(), "Home button is not present.");
         Assert.assertTrue(aboutScreen.isMenuButtonPresent(), "Menu button is not present.");
     }
@@ -247,8 +235,7 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
     // Works
     @Test
     public void aboutScreenMenuTest() {
-        MenuScreenBase menuScreen = menuService.menuService();
-        AboutScreenBase aboutScreen = (AboutScreenBase) menuScreen.clickMenuOption(MenuOption.ABOUT);
+        AboutScreenBase aboutScreen = (AboutScreenBase) menuService.open(MenuOption.ABOUT);
         Assert.assertTrue(aboutScreen.isMenuButtonPresent(), "Menu button is not present.");
         SafariBrowserBase safariBrowser = aboutScreen.clickMenuButton();
         Assert.assertTrue(safariBrowser.isCloseButtonPresent(), "Close button is not present.");
