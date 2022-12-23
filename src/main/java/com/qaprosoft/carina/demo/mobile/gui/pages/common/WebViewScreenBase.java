@@ -8,12 +8,5 @@ public abstract class WebViewScreenBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract boolean isURLFieldPresent();
-
-    public abstract void typeURL(String url);
-
-    public abstract RandomScreenBase clickGoToSiteButton();
-
-    public abstract boolean isGoToButtonPresent();
-
+    public abstract boolean isLogoPresent();
 }

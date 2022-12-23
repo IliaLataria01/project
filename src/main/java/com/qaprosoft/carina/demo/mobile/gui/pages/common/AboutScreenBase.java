@@ -12,5 +12,5 @@ public abstract class AboutScreenBase extends AbstractPage {
 
     public abstract boolean isMenuButtonPresent();
 
-    public abstract MenuAboutScreenBase clickMenuButton();
+    public abstract SafariBrowserBase clickMenuButton();
 }

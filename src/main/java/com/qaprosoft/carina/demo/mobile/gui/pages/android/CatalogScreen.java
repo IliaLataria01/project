@@ -1,43 +1,42 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
+package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.ProductViewOptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CatalogScreenBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CatalogScreenBase.class)
 public class CatalogScreen extends CatalogScreenBase {
+
     private static final Logger LOGGER = LogManager.getLogger(CatalogScreen.class);
 
-    @ExtendedFindBy(iosPredicate = "label == 'PRODUCTS' AND name == 'PRODUCTS' AND type == 'XCUIElementTypeOther'")
+
+    @FindBy(xpath = "//*[@text='PRODUCTS']")
     private ExtendedWebElement productBar;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == 'test-Modal Selector Button'`]")
+    @FindBy(xpath = "//*[@content-desc='test-Modal Selector Button']")
     private ExtendedWebElement filterButton;
 
-    @ExtendedFindBy(iosPredicate = "name == 'test-Toggle'")
+    @FindBy(xpath = "//*[@content-desc='test-Toggle']")
     private ExtendedWebElement viewButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == '%s'`]")
+    @FindBy(xpath = "//*[@text='%s']")
     private ExtendedWebElement specificProductTitle;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Cart\"`]")
+    @FindBy(xpath = "//*[@content-desc='test-Cart']")
     private ExtendedWebElement cartButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Menu\"`]")
+    @FindBy(xpath = "//*[@content-desc='test-Menu']")
     private ExtendedWebElement menuButton;
 
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label CONTAINS '%s'`][2]/**/XCUIElementTypeOther[`label == \"REMOVE\"`][1]")
+    @FindBy(xpath = "//*[@content-desc='test-REMOVE']")
     private ExtendedWebElement removeButton;
 
-
     private int count = 0;
-
 
     public CatalogScreen(WebDriver driver) {
         super(driver);
@@ -106,7 +105,7 @@ public class CatalogScreen extends CatalogScreenBase {
     @Override
     public CartScreenBase clickCartButton() {
         cartButton.click();
-        return initPage(getDriver(), CartScreenBase.class);
+        return initPage(getDriver(),CartScreenBase.class);
     }
 
     @Override
@@ -119,6 +118,5 @@ public class CatalogScreen extends CatalogScreenBase {
     public void clickRemovalButton(String productName) {
         removeButton.format(productName).click();
     }
-
 
 }

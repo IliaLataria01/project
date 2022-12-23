@@ -1,28 +1,28 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
+package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.DrawScreenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = DrawScreenBase.class)
+
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = DrawScreenBase.class)
 public class DrawScreen extends DrawScreenBase {
+
     private static final Logger LOGGER = LogManager.getLogger(DrawScreen.class);
 
 
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == \"SAVE\"`][1]")
+    @FindBy(xpath = "//*[@content-desc='test-SAVE']")
     private ExtendedWebElement saveButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`label == \"OK\"`]")
-    private ExtendedWebElement okButton;
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == \"Signature Pad demo\"`]")
+    @FindBy(xpath = "//*[@resource-id='signature-pad']")
     private ExtendedWebElement signatureField;
 
+    @FindBy(id = "android:id/button1")
+    private ExtendedWebElement okButton;
 
     public DrawScreen(WebDriver driver) {
         super(driver);
@@ -55,11 +55,6 @@ public class DrawScreen extends DrawScreenBase {
 
     @Override
     public void draw(int startX, int startY, int endX, int endY, int duration) {
-        // This is first Variant to call longPress
-//        longPress(signatureField);
-        // Second variant is to to call swipe straight (189,260) to (189,620)
-//        swipe(189,260,189,620,2500);
-        // Third variant
-        swipe(signatureField);
+
     }
 }

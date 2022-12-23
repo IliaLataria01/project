@@ -1,31 +1,31 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
+package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CheckoutScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.ConfirmScreenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CheckoutScreenBase.class)
+
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CheckoutScreenBase.class)
 public class CheckoutScreen extends CheckoutScreenBase {
+
     private static final Logger LOGGER = LogManager.getLogger(CheckoutScreen.class);
 
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeTextField[`name == \"test-First Name\"`]")
+    @FindBy(xpath = "//*[@text='First Name']")
     private ExtendedWebElement firstNameField;
 
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeTextField[`name == \"test-Last Name\"`]")
+    @FindBy(xpath = "//*[@text='Last name']")
     private ExtendedWebElement lastNameField;
 
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeTextField[`name == \"test-Zip/Postal Code\"`]")
+    @FindBy(xpath = "//*[@text='Zip/Postal Code']")
     private ExtendedWebElement postalCodeField;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == \"CONTINUE\"`][1]")
+    @FindBy(xpath = "//*[@content-desc='test-CONTINUE']")
     private ExtendedWebElement continueButton;
 
 
@@ -73,6 +73,5 @@ public class CheckoutScreen extends CheckoutScreenBase {
     public boolean isContinueButtonPresent() {
         return continueButton.isElementPresent();
     }
-
 
 }

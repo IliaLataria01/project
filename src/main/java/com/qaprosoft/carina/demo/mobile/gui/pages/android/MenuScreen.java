@@ -1,26 +1,25 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
+package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MenuScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.MenuOption;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = MenuScreenBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MenuScreenBase.class)
 public class MenuScreen extends MenuScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(MenuScreen.class);
 
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Close\"`]")
+    @FindBy(xpath = "//*[@content-desc='test-Close']")
     private ExtendedWebElement closeButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == '%s'`]")
+    @FindBy(xpath = "//*[@content-desc='%s']")
     private ExtendedWebElement menuOption;
 
     public MenuScreen(WebDriver driver) {
@@ -39,7 +38,7 @@ public class MenuScreen extends MenuScreenBase {
 
     @Override
     public boolean checkMenuOption(MenuOption option) {
-        return menuOption.format(option.getOption()).isElementPresent();
+        return menuOption.format("test-" + option.getOption()).isElementPresent();
     }
 
     @Override
@@ -47,6 +46,4 @@ public class MenuScreen extends MenuScreenBase {
         menuOption.format(option.getOption()).click();
         return initPage(getDriver(), option.getaClass());
     }
-
-
 }

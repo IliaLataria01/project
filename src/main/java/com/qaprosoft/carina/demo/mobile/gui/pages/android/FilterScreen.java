@@ -1,32 +1,31 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
+package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.FilterScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.FilterOption;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = FilterScreenBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = FilterScreenBase.class)
 public class FilterScreen extends FilterScreenBase {
-
 
     private static final Logger LOGGER = LogManager.getLogger(FilterScreen.class);
 
-    @ExtendedFindBy(iosPredicate = "label == 'Name (A to Z)'")
-    public ExtendedWebElement fromAToZ;
 
-    @ExtendedFindBy(iosPredicate = "label == 'Name (Z to A)'")
+    @FindBy(xpath = "//*[@text='Name (A to Z)']")
+    private ExtendedWebElement fromAToZ;
+
+    @FindBy(xpath = "//*[@text='Name (Z to A)']")
     private ExtendedWebElement fromZToA;
 
-    @ExtendedFindBy(iosPredicate = "label == 'Price (low to high)'")
+    @FindBy(xpath = "//*[@text='Price (low to high)']")
     private ExtendedWebElement fromLowerToHigh;
 
-    @ExtendedFindBy(iosPredicate = "label == 'Horizontal scroll bar, 2 pages'")
+    @FindBy(xpath = "//*[@text='Price (high to low)']")
     private ExtendedWebElement fromHigherToLower;
-
 
     public FilterScreen(WebDriver driver) {
         super(driver);

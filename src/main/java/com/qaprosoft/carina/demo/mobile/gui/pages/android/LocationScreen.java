@@ -1,24 +1,25 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
+package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LocationScreenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LocationScreenBase.class)
 
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LocationScreenBase.class)
 public class LocationScreen extends LocationScreenBase {
+
     private static final Logger LOGGER = LogManager.getLogger(LocationScreen.class);
 
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`label == \"Allow Once\"`]")
+    @FindBy(xpath = "//*[@text='Only this time']")
     private ExtendedWebElement allowButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == \"GEO LOCATION\"`]")
+    @FindBy(xpath = "//*[@text='GEO LOCATION']")
     private ExtendedWebElement locationBar;
+
 
     public LocationScreen(WebDriver driver) {
         super(driver);

@@ -15,4 +15,6 @@ public abstract class ConfirmScreenBase extends AbstractPage {
     public abstract boolean isGoBackButtonPresent();
 
     public abstract CatalogScreenBase clickGoBackButton();
+
+    public abstract boolean isOrderAcceptanceText();
 }

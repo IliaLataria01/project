@@ -1,8 +1,7 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
+package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CartScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CheckoutScreenBase;
@@ -11,25 +10,26 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CartScreenBase.class)
+
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE,parentClass = CartScreenBase.class)
 public class CartScreen extends CartScreenBase {
     private static final Logger LOGGER = LogManager.getLogger(CartScreen.class);
 
 
-    @FindBy(id = "%s")
-    private ExtendedWebElement selectedProduct;
+    @FindBy(xpath = "//*[@content-desc='test-CONTINUE SHOPPING']")
+    private ExtendedWebElement continueShoppingButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == \"CHECKOUT\"`][1]")
+
+    @FindBy(xpath = "//*[@content-desc='test-CHECKOUT']")
     private ExtendedWebElement checkoutButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == \"CONTINUE SHOPPING\"`][1]")
-    private ExtendedWebElement continueShoppingButton;
+    @FindBy(xpath = "//*[@text='%s']")
+    private ExtendedWebElement selectedProduct;
 
     public CartScreen(WebDriver driver) {
         super(driver);
     }
 
-    @Override
     public boolean isProductPresent(String productName) {
         return selectedProduct.format(productName).isElementPresent();
     }

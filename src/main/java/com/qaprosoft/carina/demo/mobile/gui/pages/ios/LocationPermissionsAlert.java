@@ -3,24 +3,20 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LocationPermissionsAlertBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LocationScreenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LocationScreenBase.class)
-
-public class LocationScreen extends LocationScreenBase {
-    private static final Logger LOGGER = LogManager.getLogger(LocationScreen.class);
-
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LocationPermissionsAlertBase.class)
+public class LocationPermissionsAlert extends LocationPermissionsAlertBase {
+    private static final Logger LOGGER = LogManager.getLogger(LocationPermissionsAlert.class);
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`label == \"Allow Once\"`]")
     private ExtendedWebElement allowButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == \"GEO LOCATION\"`]")
-    private ExtendedWebElement locationBar;
-
-    public LocationScreen(WebDriver driver) {
+    public LocationPermissionsAlert(WebDriver driver) {
         super(driver);
     }
 
@@ -30,12 +26,8 @@ public class LocationScreen extends LocationScreenBase {
     }
 
     @Override
-    public void clickAllowButton() {
+    public LocationScreenBase clickAllowButton() {
         allowButton.click();
-    }
-
-    @Override
-    public boolean isLocationBarPresent() {
-        return locationBar.isElementPresent();
+        return initPage(getDriver(), LocationScreenBase.class);
     }
 }
