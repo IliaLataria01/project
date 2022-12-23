@@ -258,4 +258,6 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
     // Comment Added
 
     public void justRandomMethodForChange(){}
+
+    public void anotherRandom() {}
 }
