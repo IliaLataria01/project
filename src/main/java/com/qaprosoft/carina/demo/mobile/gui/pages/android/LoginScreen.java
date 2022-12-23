@@ -14,7 +14,6 @@ public class LoginScreen extends LoginScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(LoginScreen.class);
 
-
     @FindBy(xpath = "//*[@content-desc='test-Username']")
     private ExtendedWebElement userNameField;
 
@@ -23,7 +22,6 @@ public class LoginScreen extends LoginScreenBase {
 
     @FindBy(xpath = "//*[@content-desc='test-LOGIN']")
     private ExtendedWebElement loginButton;
-
 
     public LoginScreen(WebDriver driver) {
         super(driver);

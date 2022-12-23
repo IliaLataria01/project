@@ -15,7 +15,6 @@ public class ConfirmScreen extends ConfirmScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(ConfirmScreen.class);
 
-
     @FindBy(xpath = "//*[@content-desc='test-FINISH']")
     private ExtendedWebElement finishButton;
 

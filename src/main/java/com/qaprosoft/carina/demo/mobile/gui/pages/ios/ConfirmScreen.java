@@ -14,7 +14,6 @@ import org.openqa.selenium.WebDriver;
 public class ConfirmScreen extends ConfirmScreenBase {
     private static final Logger LOGGER = LogManager.getLogger(ConfirmScreen.class);
 
-
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == \"FINISH\"`][1]")
     private ExtendedWebElement finishButton;
 

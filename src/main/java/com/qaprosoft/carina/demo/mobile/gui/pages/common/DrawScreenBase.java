@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.SignaturePermissionsAlertBase;
 import org.openqa.selenium.WebDriver;
 
 public abstract class DrawScreenBase extends AbstractPage implements IMobileUtils {
@@ -13,14 +14,14 @@ public abstract class DrawScreenBase extends AbstractPage implements IMobileUtil
 
     public abstract boolean isSaveButtonPresent();
 
-    public abstract void clickSaveButton();
+    public abstract SignaturePermissionsAlertBase clickSaveButton();
 
     public abstract boolean isOkButtonPresent();
 
     public abstract void clickOkButton();
 
-    public abstract void drawSomething();
+    public abstract boolean isDrawContainerPresent();
 
-    public abstract void draw(int startX,int startY,int endX,int endY,int duration);
+    public abstract boolean draw();
 
 }

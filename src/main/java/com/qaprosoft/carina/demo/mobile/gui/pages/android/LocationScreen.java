@@ -20,7 +20,6 @@ public class LocationScreen extends LocationScreenBase {
     @FindBy(xpath = "//*[@text='GEO LOCATION']")
     private ExtendedWebElement locationBar;
 
-
     public LocationScreen(WebDriver driver) {
         super(driver);
     }

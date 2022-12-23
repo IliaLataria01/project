@@ -1,6 +1,8 @@
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.LocationPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.SignaturePermissionsAlertBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -138,7 +140,7 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
         Assert.assertTrue(randomScreen.isLogoPresent(), "Page is not opened.");
     }
 
-    // Works (But When I find drawing functionality will modify it)
+    // Works
     @Test
     public void signatureTest() {
         CatalogScreenBase catalogScreen = authService.login();
@@ -148,23 +150,23 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
         Assert.assertTrue(menuScreen.checkMenuOption(MenuOption.DRAWING), "Drawing option is not present.");
         DrawScreenBase drawScreen = (DrawScreenBase) menuScreen.clickMenuOption(MenuOption.DRAWING);
 
-        // Here should be done drawing
-        // Steps:
-        // 1. We should implement IMobileUtils class in DrawScreenBase
-        // 2. Second we should use LongTap function
-        // 3. It is preferable it overrides the method
-        // 4. That's why we should create another method
 
-        drawScreen.drawSomething();
+        Assert.assertTrue(drawScreen.isDrawContainerPresent(), "Draw container is not present.");
+        Assert.assertTrue(drawScreen.draw(), "Draw did not happend.");
 
 
         Assert.assertTrue(drawScreen.isSaveButtonPresent(), "Save button is not present.");
-        drawScreen.clickSaveButton();
-//
-//        menuScreen = catalogScreen.clickMenuButton();
-//        Assert.assertTrue(menuScreen.checkMenuOption(MenuOptions.ALLITEMS), "All items options is not present.");
-//        catalogScreen = (CatalogScreenBase) menuScreen.clickMenuOption(MenuOptions.ALLITEMS);
-//        Assert.assertTrue(catalogScreen.isProductBarPresent(), "Product bar is not present.");
+        SignaturePermissionsAlertBase signaturePermissionsAlert = drawScreen.clickSaveButton();
+        Assert.assertTrue(signaturePermissionsAlert.isDoNotAllowButtonPresent(), "Do not allow button is not present.");
+        signaturePermissionsAlert.clickDoNotAllowButton();
+
+        Assert.assertTrue(signaturePermissionsAlert.isOkButtonPresent(), "Ok button is not present.");
+        signaturePermissionsAlert.clickOkButton();
+
+        menuScreen = catalogScreen.clickMenuButton();
+        Assert.assertTrue(menuScreen.checkMenuOption(MenuOption.ALLITEMS), "All items options is not present.");
+        catalogScreen = (CatalogScreenBase) menuScreen.clickMenuOption(MenuOption.ALLITEMS);
+        Assert.assertTrue(catalogScreen.isProductBarPresent(), "Product bar is not present.");
     }
 
     // Works
@@ -257,9 +259,12 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
 
     // Comment Added
 
-    public void justRandomMethodForChange(){}
+    public void justRandomMethodForChange() {
+    }
 
-    public void anotherRandom() {}
+    public void anotherRandom() {
+    }
 
-    public void luckyRandomMethod() {}
+    public void luckyRandomMethod() {
+    }
 }

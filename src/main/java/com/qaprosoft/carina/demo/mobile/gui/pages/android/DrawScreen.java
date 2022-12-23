@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.DrawScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.SignaturePermissionsAlertBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -14,11 +15,10 @@ public class DrawScreen extends DrawScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(DrawScreen.class);
 
-
     @FindBy(xpath = "//*[@content-desc='test-SAVE']")
     private ExtendedWebElement saveButton;
 
-    @FindBy(xpath = "//*[@resource-id='signature-pad']")
+    @FindBy(id = "test-DRAWING-SCREEN]")
     private ExtendedWebElement signatureField;
 
     @FindBy(id = "android:id/button1")
@@ -34,8 +34,9 @@ public class DrawScreen extends DrawScreenBase {
     }
 
     @Override
-    public void clickSaveButton() {
+    public SignaturePermissionsAlertBase clickSaveButton() {
         saveButton.click();
+        return initPage(getDriver(), SignaturePermissionsAlertBase.class);
     }
 
     @Override
@@ -49,12 +50,13 @@ public class DrawScreen extends DrawScreenBase {
     }
 
     @Override
-    public void drawSomething() {
-        signatureField.click();
+    public boolean isDrawContainerPresent() {
+        return signatureField.isElementPresent();
     }
 
-    @Override
-    public void draw(int startX, int startY, int endX, int endY, int duration) {
 
+    @Override
+    public boolean draw() {
+        return swipeInContainer(signatureField, Direction.DOWN, 2000);
     }
 }

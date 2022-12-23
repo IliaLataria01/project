@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.utils;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.LocationPermissionsAlertBase;
 
 public enum MenuOption {
     ALLITEMS("ALL ITEMS", CatalogScreenBase.class),

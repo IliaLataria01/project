@@ -1,6 +1,7 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.common;
+package com.qaprosoft.carina.demo.mobile.gui.pages.modals;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LocationScreenBase;
 import org.openqa.selenium.WebDriver;
 
 public abstract class LocationPermissionsAlertBase extends AbstractPage {

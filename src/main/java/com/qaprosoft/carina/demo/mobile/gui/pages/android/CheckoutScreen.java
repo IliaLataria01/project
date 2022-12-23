@@ -15,7 +15,6 @@ public class CheckoutScreen extends CheckoutScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(CheckoutScreen.class);
 
-
     @FindBy(xpath = "//*[@text='First Name']")
     private ExtendedWebElement firstNameField;
 
