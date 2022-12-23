@@ -15,7 +15,6 @@ import org.openqa.selenium.support.FindBy;
 public class CartScreen extends CartScreenBase {
     private static final Logger LOGGER = LogManager.getLogger(CartScreen.class);
 
-
     @FindBy(id = "%s")
     private ExtendedWebElement selectedProduct;
 

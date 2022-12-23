@@ -14,7 +14,6 @@ public class CatalogScreen extends CatalogScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(CatalogScreen.class);
 
-
     @FindBy(xpath = "//*[@text='PRODUCTS']")
     private ExtendedWebElement productBar;
 
@@ -105,7 +104,7 @@ public class CatalogScreen extends CatalogScreenBase {
     @Override
     public CartScreenBase clickCartButton() {
         cartButton.click();
-        return initPage(getDriver(),CartScreenBase.class);
+        return initPage(getDriver(), CartScreenBase.class);
     }
 
     @Override

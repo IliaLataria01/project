@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.DrawScreenBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.SignaturePermissionsAlertBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +21,7 @@ public class DrawScreen extends DrawScreenBase {
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`label == \"OK\"`]")
     private ExtendedWebElement okButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == \"Signature Pad demo\"`]")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == \"Vertical scroll bar, 1 page Horizontal scroll bar, 1 page\"`][1]")
     private ExtendedWebElement signatureField;
 
 
@@ -34,8 +35,9 @@ public class DrawScreen extends DrawScreenBase {
     }
 
     @Override
-    public void clickSaveButton() {
+    public SignaturePermissionsAlertBase clickSaveButton() {
         saveButton.click();
+        return initPage(getDriver(),SignaturePermissionsAlertBase.class);
     }
 
     @Override
@@ -49,17 +51,13 @@ public class DrawScreen extends DrawScreenBase {
     }
 
     @Override
-    public void drawSomething() {
-        signatureField.click();
+    public boolean isDrawContainerPresent() {
+        return signatureField.isElementPresent();
     }
 
+
     @Override
-    public void draw(int startX, int startY, int endX, int endY, int duration) {
-        // This is first Variant to call longPress
-//        longPress(signatureField);
-        // Second variant is to to call swipe straight (189,260) to (189,620)
-//        swipe(189,260,189,620,2500);
-        // Third variant
-        swipe(signatureField);
+    public boolean draw() {
+        return swipeInContainer(signatureField,Direction.DOWN,2000);
     }
 }

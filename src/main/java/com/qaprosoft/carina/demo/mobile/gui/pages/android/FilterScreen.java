@@ -14,7 +14,6 @@ public class FilterScreen extends FilterScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(FilterScreen.class);
 
-
     @FindBy(xpath = "//*[@text='Name (A to Z)']")
     private ExtendedWebElement fromAToZ;
 
