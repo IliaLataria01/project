@@ -3,11 +3,12 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.utils;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.modals.LocationPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.ScannerPermissionsAlertBase;
 
 public enum MenuOption {
     ALLITEMS("ALL ITEMS", CatalogScreenBase.class),
     WEBVIEW("WEBVIEW", OpenWebViewScreenBase.class),
-    QRCODESCANNER("QR CODE SCANNER", ScannerScreenBase.class),
+    QRCODESCANNER("QR CODE SCANNER", ScannerPermissionsAlertBase.class),
     GEOLOCATION("GEO LOCATION", LocationPermissionsAlertBase.class),
     DRAWING("DRAWING", DrawScreenBase.class),
     ABOUT("ABOUT", AboutScreenBase.class),

@@ -14,9 +14,6 @@ public class ScannerScreen extends ScannerScreenBase {
     private static final Logger LOGGER = LogManager.getLogger(ScannerScreen.class);
 
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`label == \"OK\"`]")
-    private ExtendedWebElement allowButton;
-
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`label == \"Scan a QR Code that contains a url. It will be opened in the default browser.\"`][3]")
     private ExtendedWebElement qRCode;
 
@@ -24,15 +21,6 @@ public class ScannerScreen extends ScannerScreenBase {
         super(driver);
     }
 
-    @Override
-    public void clickOkButton() {
-        allowButton.click();
-    }
-
-    @Override
-    public boolean isOkButtonPresent() {
-        return allowButton.isElementPresent();
-    }
 
     @Override
     public boolean isQRCodeRepresentationPresent() {

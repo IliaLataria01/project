@@ -8,9 +8,6 @@ public abstract class ScannerScreenBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void clickOkButton();
-
-    public abstract boolean isOkButtonPresent();
 
     public abstract boolean isQRCodeRepresentationPresent();
 }
