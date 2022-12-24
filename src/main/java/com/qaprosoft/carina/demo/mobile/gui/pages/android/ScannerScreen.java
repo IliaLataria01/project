@@ -14,9 +14,6 @@ public class ScannerScreen extends ScannerScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(ScannerScreen.class);
 
-    @FindBy(xpath = "//*[@text='Only this time']")
-    private ExtendedWebElement allowButton;
-
     @FindBy(xpath = "//*[@resource_id='com.swaglabsmobileapp:id/texture_view']")
     private ExtendedWebElement qRCode;
 
@@ -24,15 +21,6 @@ public class ScannerScreen extends ScannerScreenBase {
         super(driver);
     }
 
-    @Override
-    public void clickOkButton() {
-        allowButton.click();
-    }
-
-    @Override
-    public boolean isOkButtonPresent() {
-        return allowButton.isElementPresent();
-    }
 
     @Override
     public boolean isQRCodeRepresentationPresent() {

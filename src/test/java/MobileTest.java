@@ -2,6 +2,7 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.modals.LocationPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.ScannerPermissionsAlertBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.modals.SignaturePermissionsAlertBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.*;
 import org.testng.Assert;
@@ -218,9 +219,9 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
     // Works
     @Test
     public void scannerTest() {
-        ScannerScreenBase scannerScreen = (ScannerScreenBase) menuService.open(MenuOption.QRCODESCANNER);
-        Assert.assertTrue(scannerScreen.isOkButtonPresent(), "Ok button is not present.");
-        scannerScreen.clickOkButton();
+        ScannerPermissionsAlertBase scannerPermissionsAlert = (ScannerPermissionsAlertBase) menuService.open(MenuOption.QRCODESCANNER);
+        Assert.assertTrue(scannerPermissionsAlert.isOkButtonPresent(), "Ok button is not present.");
+        ScannerScreenBase scannerScreen = scannerPermissionsAlert.clickOkButton();
         Assert.assertTrue(scannerScreen.isQRCodeRepresentationPresent(), "QR code representation is not present.");
     }
 
