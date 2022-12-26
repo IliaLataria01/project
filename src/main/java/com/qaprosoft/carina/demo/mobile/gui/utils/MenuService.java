@@ -5,7 +5,6 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.enums.MenuOption;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MenuScreenBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.utils.AuthService;
 import org.testng.Assert;
 
 public class MenuService implements IAbstractTest {

@@ -1,10 +1,9 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.zebrunner.carina.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
-import com.qaprosoft.carina.demo.mobile.gui.enums.ProductViewOptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -13,14 +12,17 @@ import org.openqa.selenium.WebDriver;
 public class CatalogScreen extends CatalogScreenBase {
     private static final Logger LOGGER = LogManager.getLogger(CatalogScreen.class);
 
+    @ExtendedFindBy(image = "images/grid.png")
+    private ExtendedWebElement  gridViewButton;
+
+    @ExtendedFindBy(image = "images/layer.png")
+    private ExtendedWebElement layerViewButton;
+
     @ExtendedFindBy(iosPredicate = "label == 'PRODUCTS' AND name == 'PRODUCTS' AND type == 'XCUIElementTypeOther'")
     private ExtendedWebElement productBar;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == 'test-Modal Selector Button'`]")
     private ExtendedWebElement filterButton;
-
-    @ExtendedFindBy(iosPredicate = "name == 'test-Toggle'")
-    private ExtendedWebElement viewButton;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == '%s'`]")
     private ExtendedWebElement specificProductTitle;
@@ -59,11 +61,6 @@ public class CatalogScreen extends CatalogScreenBase {
     }
 
     @Override
-    public boolean isViewButtonPresent() {
-        return viewButton.isElementPresent();
-    }
-
-    @Override
     public boolean isClickProductButtonPresent() {
         return specificProductTitle.isElementPresent();
     }
@@ -78,24 +75,26 @@ public class CatalogScreen extends CatalogScreenBase {
         return removeButton.format(productName).isElementPresent();
     }
 
+    @Override
+    public boolean isLayerViewButtonPresent() {
+        return layerViewButton.isElementPresent();
+    }
 
     @Override
-    public void changeProductView(ProductViewOptions viewOptions) {
-        switch (viewOptions) {
-            case GRID: {
-                if (count % 2 != 0) {
-                    viewButton.click();
-                    count++;
-                }
-            }
-            case LAYER: {
-                if (count % 2 == 0) {
-                    viewButton.click();
-                    count++;
-                }
-            }
-        }
+    public boolean isGridViewButtonPresent() {
+        return gridViewButton.isElementPresent();
     }
+
+    @Override
+    public void clickLayerViewButton() {
+        layerViewButton.click();
+    }
+
+    @Override
+    public void clickGridViewButton() {
+        gridViewButton.click();
+    }
+
 
     @Override
     public ProductScreenBase clickProduct(String productName) {
