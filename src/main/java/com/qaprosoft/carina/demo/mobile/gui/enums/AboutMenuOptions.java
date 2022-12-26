@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.utils;
+package com.qaprosoft.carina.demo.mobile.gui.enums;
 
 public enum AboutMenuOptions {
     SOLUTIONS("Solutions"),

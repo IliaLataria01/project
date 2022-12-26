@@ -1,10 +1,13 @@
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
+import com.qaprosoft.carina.demo.mobile.gui.enums.FilterOption;
+import com.qaprosoft.carina.demo.mobile.gui.enums.MenuOption;
+import com.qaprosoft.carina.demo.mobile.gui.enums.ProductViewOptions;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
-import com.qaprosoft.carina.demo.mobile.gui.pages.modals.LocationPermissionsAlertBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.modals.ScannerPermissionsAlertBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.modals.SignaturePermissionsAlertBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.utils.*;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LocationPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.ScannerPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.SignaturePermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.utils.AuthService;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

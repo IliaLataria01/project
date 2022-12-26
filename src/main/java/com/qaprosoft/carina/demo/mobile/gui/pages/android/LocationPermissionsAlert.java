@@ -2,7 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.modals.LocationPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LocationPermissionsAlertBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.LocationScreenBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
