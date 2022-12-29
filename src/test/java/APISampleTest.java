@@ -1,9 +1,9 @@
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
-import com.qaprosoft.carina.demo.api.fakestoreapi.TDeleteMethod;
-import com.qaprosoft.carina.demo.api.fakestoreapi.TGetUserMethod;
-import com.qaprosoft.carina.demo.api.fakestoreapi.TPostUserMethod;
+import com.qaprosoft.carina.demo.api.fakestoreapi.DeleteMethod;
+import com.qaprosoft.carina.demo.api.fakestoreapi.GetUserMethod;
+import com.qaprosoft.carina.demo.api.fakestoreapi.PostUserMethod;
 
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.LoggerFactory;
@@ -22,16 +22,16 @@ public class APISampleTest implements IAbstractTest {
     // GET_ALL, Third Test Case (Works)
     @Test
     public void getAll() {
-        TGetUserMethod tGetUserMethod = new TGetUserMethod();
+        GetUserMethod tGetUserMethod = new GetUserMethod();
         tGetUserMethod.callAPIExpectSuccess();
         tGetUserMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        tGetUserMethod.validateResponseAgainstSchema("api/users/third/_get/rs.schema");
+        tGetUserMethod.validateResponseAgainstSchema("api/users/fakestoreapi/_get/rs.schema");
     }
 
     // DELETE for Third Test Case (Works)
     @Test
     public void deleteById() {
-        TDeleteMethod tDeleteMethod = new TDeleteMethod();
+        DeleteMethod tDeleteMethod = new DeleteMethod();
         tDeleteMethod.callAPIExpectSuccess();
         tDeleteMethod.validateResponse();
     }
@@ -39,7 +39,7 @@ public class APISampleTest implements IAbstractTest {
     // POST for Third Test Case (Works)
     @Test
     public void post() {
-        TPostUserMethod tPostUserMethod = new TPostUserMethod();
+        PostUserMethod tPostUserMethod = new PostUserMethod();
         tPostUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
         tPostUserMethod.callAPI();
         tPostUserMethod.validateResponse();

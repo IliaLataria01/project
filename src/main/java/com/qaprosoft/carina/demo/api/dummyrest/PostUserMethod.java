@@ -10,8 +10,8 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 
 
 @Endpoint(url = "${config.env.api_url_f}/create", methodType = HttpMethodType.POST)
-@RequestTemplatePath(path = "api/users/first/_post/rq.json")
-@ResponseTemplatePath(path = "api/users/first/_post/rs.json")
+@RequestTemplatePath(path = "api/users/dummyjson/_post/rq.json")
+@ResponseTemplatePath(path = "api/users/dummyjson/_post/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.CREATED_201)
-public class IPostUserMethod extends AbstractApiMethodV2 {
+public class PostUserMethod extends AbstractApiMethodV2 {
 }

@@ -1,17 +1,14 @@
-package com.qaprosoft.carina.demo.api.dummyrest;
+package com.qaprosoft.carina.demo.api.fakestoreapi;
 
 import com.qaprosoft.carina.core.foundation.api.AbstractApiMethodV2;
 import com.qaprosoft.carina.core.foundation.api.annotation.Endpoint;
-import com.qaprosoft.carina.core.foundation.api.annotation.RequestTemplatePath;
 import com.qaprosoft.carina.core.foundation.api.annotation.ResponseTemplatePath;
 import com.qaprosoft.carina.core.foundation.api.annotation.SuccessfulHttpStatus;
 import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 
-
-@Endpoint(url = "${config.evn.api_url_f}/delete/${config.env.id}", methodType = HttpMethodType.DELETE)
-@RequestTemplatePath(path = "api/users/first/_delete/rq.json")
-@ResponseTemplatePath(path = "api/users/first/_delete/rs.json")
+@Endpoint(url = "${config.env.api_url_t}/products", methodType = HttpMethodType.GET)
+@ResponseTemplatePath(path = "api/users/fakestoreapi/_get/rs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
-public class IDeleteMethod extends AbstractApiMethodV2 {
+public class GetUserMethod extends AbstractApiMethodV2 {
 }
