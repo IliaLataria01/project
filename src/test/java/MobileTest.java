@@ -1,10 +1,10 @@
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.modals.LocationPermissionsAlertBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.modals.ScannerPermissionsAlertBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.modals.SignaturePermissionsAlertBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.utils.*;
+import com.zebrunner.carina.utils.R;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
