@@ -45,4 +45,7 @@ public class APISampleTest implements IAbstractTest {
         tPostUserMethod.validateResponse();
     }
 
+
+    public void random(){}
+
 }
