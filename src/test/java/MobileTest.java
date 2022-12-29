@@ -1,12 +1,10 @@
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
-import com.qaprosoft.carina.demo.mobile.gui.enums.FilterOption;
-import com.qaprosoft.carina.demo.mobile.gui.enums.MenuOption;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LocationPermissionsAlertBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.ScannerPermissionsAlertBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.SignaturePermissionsAlertBase;
-import com.qaprosoft.carina.demo.mobile.gui.utils.AuthService;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.LocationPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.ScannerPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.modals.SignaturePermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -58,10 +56,15 @@ public class MobileTest extends SwagLabAbstractTest implements IAbstractTest {
     @Test
     public void productViewTest() {
         CatalogScreenBase welcomeScreen = authService.login();
-        Assert.assertTrue(welcomeScreen.isLayerViewButtonPresent(),"Layer view button is not present.");
-        welcomeScreen.clickLayerViewButton();
-        Assert.assertTrue(welcomeScreen.isGridViewButtonPresent(),"Grid view button is not present.");
-        welcomeScreen.clickGridViewButton();
+        for (int i = 0; i < 5; i++) {
+            if (i % 2 == 0) {
+                Assert.assertTrue(welcomeScreen.isViewButtonPresent(), "View button with grid view is not present.");
+                welcomeScreen.changeProductView(ProductViewOptions.GRID);
+            } else {
+                Assert.assertTrue(welcomeScreen.isViewButtonPresent(), "View button with layer view is not present.");
+                welcomeScreen.changeProductView(ProductViewOptions.LAYER);
+            }
+        }
         Assert.assertTrue(welcomeScreen.isProductBarPresent(), "Product bar is not present.");
     }
 

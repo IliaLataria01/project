@@ -1,9 +1,9 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 
-import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.ProductViewOptions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -13,13 +13,6 @@ import org.openqa.selenium.support.FindBy;
 public class CatalogScreen extends CatalogScreenBase {
 
     private static final Logger LOGGER = LogManager.getLogger(CatalogScreen.class);
-
-    @ExtendedFindBy(image = "images/grid.png")
-    private ExtendedWebElement  gridViewButton;
-
-    @ExtendedFindBy(image = "images/layer.png")
-    private ExtendedWebElement layerViewButton;
-
 
     @FindBy(xpath = "//*[@text='PRODUCTS']")
     private ExtendedWebElement productBar;
@@ -63,6 +56,10 @@ public class CatalogScreen extends CatalogScreenBase {
         return filterButton.isElementPresent();
     }
 
+    @Override
+    public boolean isViewButtonPresent() {
+        return viewButton.isElementPresent();
+    }
 
     @Override
     public boolean isClickProductButtonPresent() {
@@ -79,24 +76,23 @@ public class CatalogScreen extends CatalogScreenBase {
         return removeButton.format(productName).isElementPresent();
     }
 
-    @Override
-    public boolean isLayerViewButtonPresent() {
-        return layerViewButton.isElementPresent();
-    }
 
     @Override
-    public boolean isGridViewButtonPresent() {
-        return gridViewButton.isElementPresent();
-    }
-
-    @Override
-    public void clickLayerViewButton() {
-        layerViewButton.click();
-    }
-
-    @Override
-    public void clickGridViewButton() {
-        gridViewButton.click();
+    public void changeProductView(ProductViewOptions viewOptions) {
+        switch (viewOptions) {
+            case GRID: {
+                if (count % 2 != 0) {
+                    viewButton.click();
+                    count++;
+                }
+            }
+            case LAYER: {
+                if (count % 2 == 0) {
+                    viewButton.click();
+                    count++;
+                }
+            }
+        }
     }
 
     @Override

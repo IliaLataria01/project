@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.mobile.gui.enums.AboutMenuOptions;
+import com.qaprosoft.carina.demo.mobile.gui.pages.utils.AboutMenuOptions;
 import org.openqa.selenium.WebDriver;
 
 public abstract class MenuAboutScreenBase extends AbstractPage {
