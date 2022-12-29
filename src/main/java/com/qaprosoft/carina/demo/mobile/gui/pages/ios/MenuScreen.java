@@ -5,7 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
-import com.qaprosoft.carina.demo.mobile.gui.pages.utils.MenuOption;
+import com.qaprosoft.carina.demo.mobile.gui.enums.MenuOption;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;

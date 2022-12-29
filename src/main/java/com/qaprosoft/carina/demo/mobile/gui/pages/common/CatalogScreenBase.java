@@ -1,7 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.mobile.gui.pages.utils.ProductViewOptions;
 import org.openqa.selenium.WebDriver;
 
 public abstract class CatalogScreenBase extends AbstractPage {
@@ -15,9 +14,6 @@ public abstract class CatalogScreenBase extends AbstractPage {
 
     public abstract boolean isFilterButtonPresent();
 
-    public abstract void changeProductView(ProductViewOptions viewOptions);
-
-    public abstract boolean isViewButtonPresent();
 
     public abstract ProductScreenBase clickProduct(String productName);
 
@@ -32,5 +28,13 @@ public abstract class CatalogScreenBase extends AbstractPage {
     public abstract void clickRemovalButton(String productName);
 
     public abstract boolean isRemovalButtonPresent(String productName);
+
+    public abstract boolean isLayerViewButtonPresent();
+
+    public abstract boolean isGridViewButtonPresent();
+
+    public abstract void clickLayerViewButton();
+
+    public abstract void clickGridViewButton();
 
 }
