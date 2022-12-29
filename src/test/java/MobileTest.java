@@ -1,5 +1,5 @@
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
-import com.zebrunner.carina.utils.R;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.demo.mobile.gui.enums.FilterOption;
 import com.qaprosoft.carina.demo.mobile.gui.enums.MenuOption;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;

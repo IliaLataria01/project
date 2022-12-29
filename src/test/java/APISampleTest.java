@@ -1,17 +1,10 @@
 import com.qaprosoft.apitools.validation.JsonCompareKeywords;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
-import com.qaprosoft.carina.demo.api.dummyrest.IDeleteMethod;
-import com.qaprosoft.carina.demo.api.dummyrest.IGetUserMethod;
-import com.qaprosoft.carina.demo.api.dummyrest.IPostUserMethod;
-import com.qaprosoft.carina.demo.api.dummjson.SDeleteMethod;
-import com.qaprosoft.carina.demo.api.dummjson.SGetUserMethod;
-import com.qaprosoft.carina.demo.api.dummjson.SPostUserMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.TDeleteMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.TGetUserMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.TPostUserMethod;
-import com.zebrunner.carina.core.registrar.tag.Priority;
-import com.zebrunner.carina.core.registrar.tag.TestPriority;
+
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
