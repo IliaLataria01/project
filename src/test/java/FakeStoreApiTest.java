@@ -24,14 +24,14 @@ public class FakeStoreApiTest implements IAbstractTest {
     }
 
     @Test
-    public void deleteProductById() {
+    public void deleteProductByIdTest() {
         DeleteProductMethod deleteMethod = new DeleteProductMethod();
         deleteMethod.callAPIExpectSuccess();
         deleteMethod.validateResponse();
     }
 
     @Test
-    public void post() {
+    public void postProductTest() {
         PostProductMethod postMethod = new PostProductMethod();
         postMethod.setProperties("api/products/product.properties");
         postMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
