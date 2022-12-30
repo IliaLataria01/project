@@ -4,7 +4,7 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.DrawScreenBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.modals.SignaturePermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.SignaturePermissionsAlertBase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;

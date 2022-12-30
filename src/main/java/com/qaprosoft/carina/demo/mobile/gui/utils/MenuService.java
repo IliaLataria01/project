@@ -1,7 +1,8 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.utils;
+package com.qaprosoft.carina.demo.mobile.gui.utils;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.gui.AbstractPage;
+import com.qaprosoft.carina.demo.mobile.gui.enums.MenuOption;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogScreenBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MenuScreenBase;
 import org.testng.Assert;

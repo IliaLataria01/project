@@ -74,5 +74,4 @@ public class CheckoutScreen extends CheckoutScreenBase {
         return continueButton.isElementPresent();
     }
 
-
 }
