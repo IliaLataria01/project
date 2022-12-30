@@ -53,5 +53,4 @@ public class ProductScreen extends ProductScreenBase {
     public boolean isCartButtonPresent() {
         return cartButton.isElementPresent();
     }
-
 }

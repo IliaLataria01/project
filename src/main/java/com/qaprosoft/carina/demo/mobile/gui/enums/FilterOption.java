@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.utils;
+package com.qaprosoft.carina.demo.mobile.gui.enums;
 
 public enum FilterOption {
     FROM_A_TO_Z("A to Z"),

@@ -1,9 +1,9 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.utils;
+package com.qaprosoft.carina.demo.mobile.gui.enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
-import com.qaprosoft.carina.demo.mobile.gui.pages.modals.LocationPermissionsAlertBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.modals.ScannerPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.LocationPermissionsAlertBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.ScannerPermissionsAlertBase;
 
 public enum MenuOption {
     ALLITEMS("ALL ITEMS", CatalogScreenBase.class),
