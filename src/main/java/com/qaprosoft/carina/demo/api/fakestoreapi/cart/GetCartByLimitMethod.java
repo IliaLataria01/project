@@ -12,7 +12,9 @@ import com.zebrunner.carina.utils.R;
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetCartByLimitMethod extends AbstractApiMethodV2 {
     public GetCartByLimitMethod() {
-        replaceUrlPlaceholder("limit", R.TESTDATA.get("limit"));
         replaceUrlPlaceholder("desc", R.TESTDATA.get("desc"));
+    }
+    public void provideLimit(int limit) {
+        replaceUrlPlaceholder("limit", String.valueOf(limit));
     }
 }

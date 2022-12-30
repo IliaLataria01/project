@@ -67,6 +67,7 @@ public class FakeStoreApiTest implements IAbstractTest {
     @Test
     public void getCartByLimitSortTest() {
         GetCartByLimitMethod getCartByLimit = new GetCartByLimitMethod();
+        getCartByLimit.provideLimit(3);
         getCartByLimit.callAPIExpectSuccess();
     }
 
