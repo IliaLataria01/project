@@ -1,0 +1,8 @@
+[
+  {"id":"type:Integer",
+    "userId":"type:Integer",
+    "date":"type:String",
+    "products": "type:JSONArray",
+    "__v":"type:Integer"
+  }
+]
