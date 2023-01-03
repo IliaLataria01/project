@@ -8,11 +8,11 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.demo.api.fakestoreapi.enums.Sort;
 
 
-@Endpoint(url = "${config.env.api_url_t}/carts?limit=${limit}&sort=${sort}", methodType = HttpMethodType.GET)
+@Endpoint(url = "${config.env.api_url_t}/carts?limit=${limit}&sort=${sort_type}", methodType = HttpMethodType.GET)
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetCartByLimitMethod extends AbstractApiMethodV2 {
     public GetCartByLimitMethod(Sort sort) {
-        replaceUrlPlaceholder("sort", sort.getSort());
+        replaceUrlPlaceholder("sort_type", sort.getSort());
     }
 
     public void setLimit(int limit) {

@@ -50,7 +50,7 @@ public class FakeStoreApiTest implements IAbstractTest {
     @Test
     public void getAllCartsByDescendingTest() {
         GetCartBySortMethod cartBySortMethod = new GetCartBySortMethod();
-        cartBySortMethod.sort(Sort.DESCENDING);
+        cartBySortMethod.setSort(Sort.DESCENDING);
         cartBySortMethod.callAPIExpectSuccess();
         cartBySortMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         cartBySortMethod.validateResponseAgainstSchema("api/products/fakestoreapi/cart/_get/rs.schema");
@@ -60,7 +60,7 @@ public class FakeStoreApiTest implements IAbstractTest {
     @Test
     public void getUserCartByIdAscendingTest() {
         GetUserCartMethod getUserCartMethod = new GetUserCartMethod(2);
-        getUserCartMethod.sort(Sort.DESCENDING);
+        getUserCartMethod.setSort(Sort.DESCENDING);
         getUserCartMethod.callAPIExpectSuccess();
         getUserCartMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
     }
