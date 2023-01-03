@@ -1,0 +1,4 @@
+{
+  "username": "${login_user}",
+  "password": "${login_password}"
+}
