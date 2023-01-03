@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.demo.api.fakestoreapi.cart.GetCartByLimitMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.cart.GetCartBySortMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.cart.GetUserCartMethod;
+import com.qaprosoft.carina.demo.api.fakestoreapi.enums.Sort;
 import com.qaprosoft.carina.demo.api.fakestoreapi.users.PostLoginMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.products.DeleteProductMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.products.GetAllProductMethod;
@@ -49,6 +50,7 @@ public class FakeStoreApiTest implements IAbstractTest {
     @Test
     public void getAllCartsByDescendingTest() {
         GetCartBySortMethod cartBySortMethod = new GetCartBySortMethod();
+        cartBySortMethod.sort(Sort.DESCENDING);
         cartBySortMethod.callAPIExpectSuccess();
         cartBySortMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         cartBySortMethod.validateResponseAgainstSchema("api/products/fakestoreapi/cart/_get/rs.schema");
@@ -57,7 +59,8 @@ public class FakeStoreApiTest implements IAbstractTest {
     // New Test 2 (works)
     @Test
     public void getUserCartByIdAscendingTest() {
-        GetUserCartMethod getUserCartMethod = new GetUserCartMethod();
+        GetUserCartMethod getUserCartMethod = new GetUserCartMethod(2);
+        getUserCartMethod.sort(Sort.DESCENDING);
         getUserCartMethod.callAPIExpectSuccess();
         getUserCartMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
     }
@@ -66,8 +69,8 @@ public class FakeStoreApiTest implements IAbstractTest {
     // New Test 3 (works)
     @Test
     public void getCartByLimitSortTest() {
-        GetCartByLimitMethod getCartByLimit = new GetCartByLimitMethod();
-        getCartByLimit.provideLimit(3);
+        GetCartByLimitMethod getCartByLimit = new GetCartByLimitMethod(Sort.DESCENDING);
+        getCartByLimit.setLimit(3);
         getCartByLimit.callAPIExpectSuccess();
     }
 

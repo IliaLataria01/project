@@ -6,14 +6,17 @@ import com.qaprosoft.carina.core.foundation.api.annotation.ResponseTemplatePath;
 import com.qaprosoft.carina.core.foundation.api.annotation.SuccessfulHttpStatus;
 import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
-import com.zebrunner.carina.utils.R;
+import com.qaprosoft.carina.demo.api.fakestoreapi.enums.Sort;
 
-@Endpoint(url = "${config.env.api_url_t}/carts/user/${user_id}?sort=${asc}", methodType = HttpMethodType.GET)
+@Endpoint(url = "${config.env.api_url_t}/carts/user/${user_id}?sort=${sort}", methodType = HttpMethodType.GET)
 @ResponseTemplatePath(path = "api/products/fakestoreapi/cart/_get/qrs.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class GetUserCartMethod extends AbstractApiMethodV2 {
-    public GetUserCartMethod() {
-        replaceUrlPlaceholder("asc", R.TESTDATA.get("asc"));
-        replaceUrlPlaceholder("user_id", R.TESTDATA.get("user_id"));
+    public GetUserCartMethod(int id) {
+        replaceUrlPlaceholder("user_id", String.valueOf(id));
+    }
+
+    public void sort(Sort sort) {
+        replaceUrlPlaceholder("sort", sort.getSort());
     }
 }
