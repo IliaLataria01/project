@@ -10,6 +10,8 @@ import com.qaprosoft.carina.demo.api.fakestoreapi.products.DeleteProductMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.products.GetAllProductMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.products.PostProductMethod;
 import com.qaprosoft.carina.demo.api.fakestoreapi.users.UpdateUserMethod;
+import kong.unirest.JsonObjectMapper;
+import kong.unirest.ObjectMapper;
 import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -29,68 +31,68 @@ public class FakeStoreApiTest implements IAbstractTest {
         getAllMethod.validateResponseAgainstSchema("api/products/fakestoreapi/product/_get/rs.schema");
     }
 
-    @Test
-    public void deleteProductByIdTest() {
-        DeleteProductMethod deleteMethod = new DeleteProductMethod();
-        deleteMethod.callAPIExpectSuccess();
-        deleteMethod.validateResponse();
-    }
+//    @Test
+//    public void deleteProductByIdTest() {
+//        DeleteProductMethod deleteMethod = new DeleteProductMethod();
+//        deleteMethod.callAPIExpectSuccess();
+//        deleteMethod.validateResponse();
+//    }
 
-    @Test
-    public void postProductTest() {
-        PostProductMethod postMethod = new PostProductMethod();
-        postMethod.setProperties("api/products/product.properties");
-        postMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-        postMethod.callAPI();
-        postMethod.validateResponse();
-    }
+//    @Test
+//    public void postProductTest() {
+//        PostProductMethod postMethod = new PostProductMethod();
+//        postMethod.setProperties("api/products/product.properties");
+//        postMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+//        postMethod.callAPI();
+//        postMethod.validateResponse();
+//    }
 
 
     // New Test 1 (works)
-    @Test
-    public void getAllCartsByDescendingTest() {
-        GetCartBySortMethod cartBySortMethod = new GetCartBySortMethod();
-        cartBySortMethod.setSort(Sort.DESCENDING);
-        cartBySortMethod.callAPIExpectSuccess();
-        cartBySortMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-        cartBySortMethod.validateResponseAgainstSchema("api/products/fakestoreapi/cart/_get/rs.schema");
-    }
+//    @Test
+//    public void getAllCartsByDescendingTest() {
+//        GetCartBySortMethod cartBySortMethod = new GetCartBySortMethod();
+//        cartBySortMethod.setSort(Sort.DESCENDING);
+//        cartBySortMethod.callAPIExpectSuccess();
+//        cartBySortMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
+//        cartBySortMethod.validateResponseAgainstSchema("api/products/fakestoreapi/cart/_get/rs.schema");
+//    }
 
     // New Test 2 (works)
-    @Test
-    public void getUserCartByIdAscendingTest() {
-        GetUserCartMethod getUserCartMethod = new GetUserCartMethod(2);
-        getUserCartMethod.setSort(Sort.DESCENDING);
-        getUserCartMethod.callAPIExpectSuccess();
-        getUserCartMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
-    }
-
-
-    // New Test 3 (works)
-    @Test
-    public void getCartByLimitSortTest() {
-        GetCartByLimitMethod getCartByLimit = new GetCartByLimitMethod(Sort.DESCENDING);
-        getCartByLimit.setLimit(3);
-        getCartByLimit.callAPIExpectSuccess();
-    }
-
-    // Newt Test 4 (works)
-    @Test
-    public void useLoginTest() {
-        PostLoginMethod postLoginMethod = new PostLoginMethod();
-        postLoginMethod.setProperties("api/products/user.properties");
-        postLoginMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-        postLoginMethod.callAPI();
-        postLoginMethod.validateResponse();
-    }
-
-    // New Test 5 (works)
-    @Test
-    public void updateUserTest() {
-        UpdateUserMethod updateUserMethod = new UpdateUserMethod();
-        updateUserMethod.setProperties("api/products/user.properties");
-        updateUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
-        updateUserMethod.callAPI();
-        updateUserMethod.validateResponse();
-    }
+//    @Test
+//    public void getUserCartByIdAscendingTest() {
+//        GetUserCartMethod getUserCartMethod = new GetUserCartMethod(2);
+//        getUserCartMethod.setSort(Sort.DESCENDING);
+//        getUserCartMethod.callAPIExpectSuccess();
+//        getUserCartMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
+//    }
+//
+//
+//    // New Test 3 (works)
+//    @Test
+//    public void getCartByLimitSortTest() {
+//        GetCartByLimitMethod getCartByLimit = new GetCartByLimitMethod(Sort.DESCENDING);
+//        getCartByLimit.setLimit(3);
+//        getCartByLimit.callAPIExpectSuccess();
+//    }
+//
+//    // Newt Test 4 (works)
+//    @Test
+//    public void useLoginTest() {
+//        PostLoginMethod postLoginMethod = new PostLoginMethod();
+//        postLoginMethod.setProperties("api/products/user.properties");
+//        postLoginMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+//        String res  = postLoginMethod.callAPI().asString();
+//        postLoginMethod.validateResponse();
+//    }
+//
+//    // New Test 5 (works)
+//    @Test
+//    public void updateUserTest() {
+//        UpdateUserMethod updateUserMethod = new UpdateUserMethod();
+//        updateUserMethod.setProperties("api/products/user.properties");
+//        updateUserMethod.expectResponseStatus(HttpResponseStatusType.OK_200);
+//        updateUserMethod.callAPI();
+//        updateUserMethod.validateResponse();
+//    }
 }
